@@ -32,10 +32,12 @@ This document lays out the MVP design application that organizes information usi
 Note: this does not include data for authentication and authorization.
 
 ### Account
-This table may be folded into existing tables for authn/authz.
+The email address of the Account is used to associate with the current email in the session.
+
 | name | type |
 | - | - |
 | id | pk |
+| email | text |
 | name | text |
 | createdAt | datetime |
 | lastUpdated | datetime |
