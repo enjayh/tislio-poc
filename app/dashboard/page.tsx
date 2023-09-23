@@ -1,9 +1,9 @@
 import LogoutButton from '../components/LogoutButton';
 
-export default function Overview() {
+export default function Dashboard() {
   return (
     <main>
-      <div>Overview Page</div>
+      <div>Dashboard Page</div>
       <LogoutButton />
     </main>
   )
