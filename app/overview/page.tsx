@@ -1,5 +1,10 @@
+import LogoutButton from '../components/LogoutButton';
+
 export default function Overview() {
   return (
-    <div>Overview Page</div>
+    <main>
+      <div>Overview Page</div>
+      <LogoutButton />
+    </main>
   )
 }
