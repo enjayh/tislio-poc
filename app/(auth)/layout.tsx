@@ -9,7 +9,7 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
   const { data } = await supabase.auth.getSession()
 
   if (data.session) {
-    redirect('/overview')
+    redirect('/dashboard')
   }
 
   return (

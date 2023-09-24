@@ -1,6 +1,6 @@
 import LogoutButton from '../components/LogoutButton';
 
-export default function Dashboard() {
+export default async function Dashboard() {
   return (
     <main>
       <div>Dashboard Page</div>
