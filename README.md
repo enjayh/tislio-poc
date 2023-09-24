@@ -7,3 +7,5 @@
 1. Create a new project in supabase
 2. Copy ```.env.local.example``` to ```.env.local```
 3. Populate ```.env.local``` with values for the supabase project API settings
+4. Copy ```.env.local``` to ```.env```
+5. Populate ```.env``` with the connection string from the supabase project database settings
