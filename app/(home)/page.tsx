@@ -12,7 +12,7 @@ export default async function Home() {
     <main className="flex">
       <nav>
         {data.session && (
-          <Link href="/overview">Overview</Link>
+          <Link href="/dashboard">Dashboard</Link>
         )}
         {!data.session && (
           <Link href="/login">Login</Link>
