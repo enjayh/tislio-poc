@@ -50,7 +50,7 @@ export default function Login() {
         />
         <button className="btn-primary">Submit</button>
       </form>
-      <div className="text-center"><Link href="/signup">Don't have an account? Sign up here.</Link></div>
+      <div className="text-center"><Link href="/signup">Don&apos;t have an account? Sign up here.</Link></div>
       {error && (
         <div className="error">{error}</div>
       )}
