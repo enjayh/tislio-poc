@@ -1,9 +1,11 @@
-import LogoutButton from '../components/LogoutButton';
+import Logo from '../components/Logo'
+import LogoutButton from '../components/LogoutButton'
 
 export default async function Dashboard() {
   return (
     <main>
       <nav>
+        <Logo />
         <h2 className="mr-auto">Dashboard</h2>
         <LogoutButton />
       </nav>
