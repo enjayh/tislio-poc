@@ -3,6 +3,7 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import Link from 'next/link'
 
 export default function SignUp() {
   const [email, setEmail] = useState('')
@@ -33,7 +34,7 @@ export default function SignUp() {
 
   return (
     <main>
-      <h2>Sign up</h2>
+      <h2 className="text-center">Sign up</h2>
       <form onSubmit={handleSubmit}>
         <label>
           <span>Email:</span>
@@ -53,8 +54,9 @@ export default function SignUp() {
             required
           />
         </label>
-        <button>Submit</button>
+        <button className="btn-primary">Submit</button>
       </form>
+      <div className="text-center"><Link href="/login">Already have an account? Log in here.</Link></div>
       {error && (
         <div>{error}</div>
       )}

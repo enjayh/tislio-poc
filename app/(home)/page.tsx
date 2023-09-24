@@ -9,17 +9,21 @@ export default async function Home() {
   const { data } = await supabase.auth.getSession()
 
   return (
-    <main className="flex">
+    <>
       <nav>
+        <h1 className="mr-auto">Tislio</h1>
         {data.session && (
-          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/dashboard">
+            <button className="btn-primary">Dashboard</button>
+          </Link>
         )}
         {!data.session && (
           <Link href="/login">Login</Link>
         )}
       </nav>
-      <h2>Tislio</h2>
-      <div>Oh hi. This is Tislio. Not much to see at the moment :D</div>
-    </main>
+      <main>
+        <div>Oh hi. This is Tislio. Not much to see at the moment :D</div>
+      </main>
+    </>
   )
 }

@@ -1,7 +1,7 @@
 export default function Loading() {
   return (
-    <main>
-      <h2>Loading...</h2>
+    <main className="text-center">
+      <h2 className="text-primary">Loading...</h2>
     </main>
   )
 }
