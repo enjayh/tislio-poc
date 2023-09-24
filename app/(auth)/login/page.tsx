@@ -27,6 +27,7 @@ export default function Login() {
       setError(error.message)
     }
     if (!error) {
+      router.refresh()
       router.push('/dashboard')
     }
   }
