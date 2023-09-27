@@ -38,7 +38,6 @@ The email address of the Account is used to associate with the current email in 
 | - | - |
 | id | pk |
 | email | text |
-| name | text |
 | createdAt | datetime |
 | lastUpdated | datetime |
 
