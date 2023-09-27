@@ -37,7 +37,19 @@ export default function SignUp() {
       setError(error.message)
     }
     if (!error) {
-      router.push('verify')
+      const res = await fetch('http://localhost:3000/api/accounts', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email: email })
+      })
+
+      const json = await res.json()
+
+      if (json.error) {
+        console.log(json.error.message)
+      } else {
+        router.push('verify')
+      }
     }
   }
 
