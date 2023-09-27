@@ -38,8 +38,14 @@ The email address of the Account is used to associate with the current email in 
 | - | - |
 | id | pk |
 | email | text |
-| createdAt | datetime |
-| lastUpdated | datetime |
+| created_at | datetime |
+
+### Category
+| name | type |
+| - | - |
+| id | pk |
+| name | text |
+| account_id | fk |
 
 ### Tag
 | name | type |
@@ -48,28 +54,32 @@ The email address of the Account is used to associate with the current email in 
 | name | text |
 | type | text (enum: TEXT/INT/FLOAT/DATE/BOOL) |
 | account_id | fk |
-| createdAt | datetime |
-| lastUpdated | datetime |
 
-### Datum
+### Note
 | name | type |
 | - | - |
 | id | pk |
-| name | text |
-| status | text (enum: ACTIVE/DONE) |
+| body | text |
+| completed | boolean |
+| status | text (enum: HYDRATED/ARCHIVED/DOOMED)
 | account_id | fk |
-| createdAt | datetime |
-| lastUpdated | datetime |
+| created_at | datetime |
+| last_updated | datetime |
 
-### DatumTags
+### NotesCategories
 | name | type |
 | - | - |
 | id | pk |
-| data_id | fk |
+| note_id | fk |
+| category_id | fk |
+
+### NotesTags
+| name | type |
+| - | - |
+| id | pk |
+| note_id | fk |
 | tag_id | fk |
-| value | text |
-| createdAt | datetime |
-| lastUpdated | datetime |
+| tag_value | text |
 
 ## UI
 - Account
