@@ -1,15 +1,11 @@
-import Logo from '../components/Logo'
-import LogoutButton from '../components/LogoutButton'
+import NavBar from '../components/NavBar'
 
 export default async function Dashboard() {
   return (
     <main>
-      <nav>
-        <Logo />
-        <h2 className="mr-auto">Dashboard</h2>
-        <LogoutButton />
-      </nav>
-      <div>Need some actual content here!</div>
+      <NavBar />
+      <h2>Dashboard!</h2>
+      <div>Need some actual <strong>dashboard</strong> content here!</div>
     </main>
   )
 }
