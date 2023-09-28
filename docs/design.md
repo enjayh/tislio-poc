@@ -42,14 +42,14 @@ The email address of the Account is used to associate with the current email in 
 | email | text |
 | created_at | datetime |
 
-### Category
+### Tag
 | name | type |
 | - | - |
 | id | pk |
 | name | text |
 | account_id | fk |
 
-### Tag
+### Trait
 | name | type |
 | - | - |
 | id | pk |
@@ -67,20 +67,20 @@ The email address of the Account is used to associate with the current email in 
 | created_at | datetime |
 | last_updated | datetime |
 
-### NotesCategories
-| name | type |
-| - | - |
-| id | pk |
-| note_id | fk |
-| category_id | fk |
-
 ### NotesTags
 | name | type |
 | - | - |
 | id | pk |
 | note_id | fk |
 | tag_id | fk |
-| tag_value | text |
+
+### NotesTraits
+| name | type |
+| - | - |
+| id | pk |
+| note_id | fk |
+| trait_id | fk |
+| trait_value | text |
 
 ## UI
 - Account
