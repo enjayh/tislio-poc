@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import NavBar from '../components/NavBar'
+import TagList from './TagList'
 
 export default function Tags() {
   return (
@@ -12,6 +13,7 @@ export default function Tags() {
       </nav>
       <h2>Tags</h2>
       <div>List of tags here.</div>
+      <TagList />
     </main>
   )
 }

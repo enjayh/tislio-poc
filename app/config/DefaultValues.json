@@ -1,0 +1,4 @@
+{
+  "tags": ["Books", "Movies", "Video Games", "Recipes", "To-Do", "Contact", "Media"],
+  "traits": ["Due", "Genre", "Author", "Priority", "Rating"]
+}

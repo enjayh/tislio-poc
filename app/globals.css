@@ -87,6 +87,9 @@ form > a {
   @apply block mx-auto;
 }
 
+/* Tag and Trait Styling */
+
+
 /* feedback styles */
 .error {
   @apply 
