@@ -1,7 +1,7 @@
 # Tislio Design Document
 
 ## Overview
-This document lays out the MVP design application that organizes information using tags.
+This document lays out the MVP design application that organizes notes using metadata.
 
 ## User-Centric Goals
 - Create a system for users to list of information they want to retrieve later, including:
@@ -16,17 +16,19 @@ This document lays out the MVP design application that organizes information usi
 ## User Cases and Functionality
 - Create an account.
 - Log in.
-- Create an item of data (datum) for later use.
-- Display one or more datum/data.
-- Edit an existing datum.
-- Delete an existing datum.
-- Create a tag.
-- List all tags.
-- Edit a tag.
-- Delete a tag.
-- Add a tag to a datum.
-- Remove a tag from a datum.
--  Display data based on selected tags (filtering).
+- Log out.
+- Create a category.
+- Display categories.
+- Create a trait.
+- Display traits.
+- Create note.
+- Display notes.
+- Delete a note.
+- Add a category to a note.
+- Remove a category to a note.
+- Add a trait to a note.
+- Remove a trait from a note.
+- Display notes based on selected tags (filtering).
 
 ## Data Model
 Note: this does not include data for authentication and authorization.
@@ -61,7 +63,6 @@ The email address of the Account is used to associate with the current email in 
 | id | pk |
 | body | text |
 | completed | boolean |
-| status | text (enum: HYDRATED/ARCHIVED/DOOMED)
 | account_id | fk |
 | created_at | datetime |
 | last_updated | datetime |
@@ -83,18 +84,19 @@ The email address of the Account is used to associate with the current email in 
 
 ## UI
 - Account
-  - Select account from a list of all accounts
   - Create an account
-- Tag
-  - List all tags for an account
+  - Log in to an account
+- Tag (for an account)
+  - List all tags
   - Create a tag
-  - Edit tag (name only)
-  - Delete a tag
-- Data
-  - List all data (with filter selections) for an account
-  - Create a datum
-  - Edit datum (name/status)
-  - Add and remove tags for a datum
+- Trait (for an account)
+  - List all traits
+  - Create a trait
+- Note (for an account)
+  - List all notes with filters
+  - Create a note
+  - Edit a note
+  - Delete a note
 
 ## Technologies
 - Start with web technologies that allow easy use in both desktop and mobile environments.
