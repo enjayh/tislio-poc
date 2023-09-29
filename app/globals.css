@@ -87,6 +87,20 @@ form > a {
   @apply block mx-auto;
 }
 
+/* Tag and Trait Styling */
+.tagStyle{
+  height: 30px;
+  width: fit-content;
+  @apply bg-secondary;
+  border-radius: 8px;
+  color: white;
+  padding: 0 10px 0 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 /* feedback styles */
 .error {
   @apply 
