@@ -16,7 +16,8 @@ export async function POST(request: NextRequest) {
 
   const accountId = await getAccountId(supabase, email)
   
-  const { data, error } = await supabase.from('Tag')
+  const { data, error } = await supabase
+    .from('Tag')
     .insert({
       name: tag.name,
       account_id: accountId
@@ -38,8 +39,9 @@ export async function GET(request:NextRequest) {
 
   const accountId = await getAccountId(supabase, email)
   
-  const { data, error } = await supabase.from('Tag')
-  .select('name')
-  .eq('account_id', accountId)
+  const { data, error } = await supabase
+    .from('Tag')
+    .select('name, id')
+    .eq('account_id', accountId)
   return NextResponse.json({ data, error })
 }
