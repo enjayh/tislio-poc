@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
@@ -39,7 +39,7 @@ export default function SignUp() {
     if (!error) {
       const res = await fetch('http://localhost:3000/api/accounts', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: email })
       })
 
