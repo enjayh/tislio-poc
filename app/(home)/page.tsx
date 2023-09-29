@@ -7,7 +7,10 @@ export const dynamic = 'force-dynamic'
 
 export default async function Home() {
   const supabase = createServerComponentClient({ cookies })
-  const { data } = await supabase.auth.getSession()
+  const { data, error } = await supabase.auth.getSession()
+  if (error) {
+    console.error('Error obtaining session: ' + error.message)
+  }
 
   return (
     <>

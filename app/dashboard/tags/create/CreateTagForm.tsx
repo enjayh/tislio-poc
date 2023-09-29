@@ -25,7 +25,7 @@ export default function CreateTagForm() {
     const json = await res.json()
 
     if (json.error) {
-      console.log(json.error.message)
+      console.error('Error creating tag: ' + json.error.message)
     }
     if (json.data) {
       router.refresh()

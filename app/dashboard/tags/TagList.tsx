@@ -1,6 +1,7 @@
 import { getAccountId, getSessionUserEmail } from '@/app/utils/SupabaseUtils';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers'
+
 export const dynamic = 'force-dynamic'
 
 interface Tag {
@@ -10,12 +11,7 @@ interface Tag {
 
 export default async function TagList() {
   const supabase = createRouteHandlerClient({ cookies })
-  const email = await getSessionUserEmail()
-
-  if (!email) {
-    console.log('Unable to get session. Cannot return tag list.')
-  }
-
+  const email = await getSessionUserEmail(supabase)
   const accountId = await getAccountId(supabase, email)
 
   const { data, error } = await supabase
@@ -24,13 +20,10 @@ export default async function TagList() {
     .eq('account_id', accountId)
 
   if (error) {
-    console.log(error.message)
+    console.error('Error getting tag: ' + error.message)
   }
 
-  let tags: {name: any, id: any}[] = []
-  if (data) {
-    tags = data
-  }
+  const tags = data || []
 
   return (
     <>
