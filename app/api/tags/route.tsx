@@ -26,21 +26,3 @@ export async function POST(request: NextRequest) {
     .single()
   return NextResponse.json({ data, error })
 }
-
-export async function GET(request: NextRequest) {
-
-  const supabase = createRouteHandlerClient({ cookies })
-  const email = await getSessionUserEmail()
-
-  if (!email) {
-    console.log('Unable to get session. Cannot return tag list.')
-  }
-
-  const accountId = await getAccountId(supabase, email)
-
-  const { data, error } = await supabase
-    .from('Tag')
-    .select('name, id')
-    .eq('account_id', accountId)
-  return NextResponse.json({ data, error })
-}
