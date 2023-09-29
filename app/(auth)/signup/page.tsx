@@ -16,13 +16,12 @@ export default function SignUp() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setError('')
 
     if (password !== repassword) {
       setError('Passwords do not match')
       return
     }
-
-    setError('')
 
     const supabase = createClientComponentClient()
     const { error } = await supabase.auth.signUp({
@@ -46,9 +45,9 @@ export default function SignUp() {
       const json = await res.json()
 
       if (json.error) {
-        console.log(json.error.message)
+        console.error('Error creating account: ' + json.error.message)
       } else {
-        router.push('verify')
+        router.push('/verify')
       }
     }
   }

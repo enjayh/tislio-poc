@@ -15,7 +15,7 @@ export default function LogoutButton() {
       router.push('/login')
     }
     if (error) {
-      console.log(error)
+      console.error('Error logging out: ' + error.message)
     }
   }
 

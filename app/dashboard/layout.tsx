@@ -6,7 +6,11 @@ export const dynamic = 'force-dynamic'
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const supabase = createServerComponentClient({ cookies })
-  const { data } = await supabase.auth.getSession()
+  const { data, error } = await supabase.auth.getSession()
+
+  if (error) {
+    console.error('Failed to load dashboard layout: ' + error.message)
+  }
 
   if (!data.session) {
     redirect('/login')

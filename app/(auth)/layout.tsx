@@ -6,9 +6,12 @@ export const dynamic = 'force-dynamic'
 
 export default async function AuthLayout({ children }: { children: React.ReactNode }) {
   const supabase = createServerComponentClient({ cookies })
-  const { data } = await supabase.auth.getSession()
+  const { data, error } = await supabase.auth.getSession()
 
-  if (data.session) {
+  if (error) {
+    console.error('Failed to load auth layout: ' + error.message)
+    redirect('/login')
+  } else if (data.session) {
     redirect('/dashboard')
   }
 

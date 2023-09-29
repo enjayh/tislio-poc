@@ -8,11 +8,7 @@ export const dynamic = 'force-dynamic'
 export async function POST(request: NextRequest) {
   const tag = await request.json()
   const supabase = createRouteHandlerClient({ cookies })
-  const email = await getSessionUserEmail()
-
-  if (!email) {
-    console.log('Unable to get session. Tag creation aborted.')
-  }
+  const email = await getSessionUserEmail(supabase)
 
   const accountId = await getAccountId(supabase, email)
 

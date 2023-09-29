@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
       }
     })
   } catch (e) {
-    console.log('Error adding account: ' + JSON.stringify(e))
+    console.error('Error adding account: ' + JSON.stringify(e))
     return NextResponse.json({
       error: { message: 'Error adding account :(' }
     })
