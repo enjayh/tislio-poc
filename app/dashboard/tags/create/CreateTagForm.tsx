@@ -29,7 +29,7 @@ export default function CreateTagForm() {
     }
     if (json.data) {
       router.refresh()
-      router.push('/tags')
+      router.push('/dashboard/tags')
     }
   }
 

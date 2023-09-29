@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import NavBar from '../components/NavBar'
+import NavBar from '@/app/components/NavBar'
 import TagList from './TagList'
 
 export default function Tags() {
@@ -7,7 +7,7 @@ export default function Tags() {
     <main>
       <NavBar />
       <nav>
-        <Link href="/tags/create">
+        <Link href="/dashboard/tags/create">
           <button className="btn-primary">New Tag</button>
         </Link>
       </nav>
