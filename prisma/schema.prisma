@@ -12,15 +12,15 @@ datasource db {
 }
 
 model Account {
-  id Int @id @default(autoincrement())
-  email String @unique
-  tags Tag[]
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  tags      Tag[]
   createdAt DateTime @default(now())
 }
 
 model Tag {
-  id Int @id @default(autoincrement())
-  name String
-  account Account @relation(fields: [account_id], references: [id])
+  id         Int     @id @default(autoincrement())
+  name       String
+  account    Account @relation(fields: [account_id], references: [id])
   account_id Int
 }

@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
   }
 
   const accountId = await getAccountId(supabase, email)
-  
+
   const { data, error } = await supabase
     .from('Tag')
     .insert({
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
   return NextResponse.json({ data, error })
 }
 
-export async function GET(request:NextRequest) {
+export async function GET(request: NextRequest) {
 
   const supabase = createRouteHandlerClient({ cookies })
   const email = await getSessionUserEmail()
@@ -37,7 +37,7 @@ export async function GET(request:NextRequest) {
   }
 
   const accountId = await getAccountId(supabase, email)
-  
+
   const { data, error } = await supabase
     .from('Tag')
     .select('name, id')

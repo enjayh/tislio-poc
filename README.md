@@ -9,4 +9,5 @@
 3. Populate ```.env.local``` with values for the supabase project API settings
 4. Copy ```.env.local``` to ```.env```
 5. Populate ```.env``` with the connection string from the supabase project database settings
-6. Run ```npx prisma migrate dev``` to create the database tables
+6. Run ```npm install```
+7. Run ```npx prisma migrate dev``` to create the database tables
