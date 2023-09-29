@@ -17,8 +17,8 @@ export default function CreateTagForm() {
     const tag = { name }
 
     const res = await fetch('http://localhost:3000/api/tags', {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(tag)
     })
 

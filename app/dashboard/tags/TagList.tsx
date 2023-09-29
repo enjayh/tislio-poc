@@ -1,6 +1,6 @@
-import { getAccountId, getSessionUserEmail } from "@/app/utils/SupabaseUtils";
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers"
+import { getAccountId, getSessionUserEmail } from '@/app/utils/SupabaseUtils';
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers'
 export const dynamic = 'force-dynamic'
 
 interface Tag {
