@@ -12,11 +12,12 @@ datasource db {
 }
 
 model Account {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
-  tags      Tag[]
-  createdAt DateTime @default(now())
-  Trait     Trait[]
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  tags       Tag[]
+  Trait      Trait[]
+  Note       Note[]
+  created_at DateTime @default(now())
 }
 
 model Tag {
@@ -32,4 +33,14 @@ model Trait {
   type       String
   account    Account @relation(fields: [account_id], references: [id])
   account_id Int
+}
+
+model Note {
+  id         Int       @id @default(autoincrement())
+  body       String
+  completed  Boolean
+  account    Account   @relation(fields: [account_id], references: [id])
+  account_id Int
+  created_at DateTime  @default(now())
+  updated_at DateTime? @updatedAt
 }

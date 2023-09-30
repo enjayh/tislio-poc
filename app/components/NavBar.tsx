@@ -9,6 +9,9 @@ export default function NavBar() {
       <Link href="/dashboard" className="mr-auto">
         <h2>Dashboard</h2>
       </Link>
+      <Link href="/notes">
+        <h2>Notes</h2>
+      </Link>
       <Link href="/tags">
         <h2>Tags</h2>
       </Link>
