@@ -65,7 +65,7 @@ The email address of the Account is used to associate with the current email in 
 | completed | boolean |
 | account_id | fk |
 | created_at | datetime |
-| last_updated | datetime |
+| updated_at | datetime (nullable) |
 
 ### NotesTags
 | name | type |
