@@ -1,6 +1,8 @@
 import { getAccountId, getSessionUserEmail } from '@/app/utils/SupabaseUtils';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers'
+import { TiTick, TiTickOutline } from 'react-icons/ti'
+import Link from 'next/link';
 
 export const dynamic = 'force-dynamic'
 
@@ -31,10 +33,16 @@ export default async function NoteList() {
   return (
     <>
       {notes.map((note: Note) => (
-        <div key={note.id} className="tagStyle">
-          <p>{note.body} | {String(note.completed)} | {note.created_at.toString()} | {note.updated_at ? note.updated_at.toString() : "Never updated"}</p>
-        </div>
-      ))}
+        <div key={note.id} className="item-pill">
+          {note.completed && (<TiTick />)}
+          {!note.completed && (<TiTickOutline />)}
+          <Link href={'/notes/' + note.id}>
+            <span>{note.body}</span>
+          </Link>
+        </div >
+
+      ))
+      }
     </>
   )
 }

@@ -28,7 +28,7 @@ export default async function TagList() {
   return (
     <>
       {tags.map((tag: Tag) => (
-        <div key={tag.id} className="tagStyle">
+        <div key={tag.id} className="item-pill">
           <p>{tag.name}</p>
         </div>
       ))}
