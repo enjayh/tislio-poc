@@ -7,7 +7,7 @@ export default function Traits() {
     <main>
       <NavBar />
       <nav>
-        <Link href="/dashboard/traits/create">
+        <Link href="/traits/create">
           <button className="btn-primary">Create Trait</button>
         </Link>
       </nav>

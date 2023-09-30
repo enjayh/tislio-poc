@@ -3,11 +3,10 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-export default function CreateTraitForm() {
+export default function CreateTagForm() {
   const router = useRouter()
 
   const [name, setName] = useState('')
-  const [type, setType] = useState('TEXT')
   const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -15,15 +14,12 @@ export default function CreateTraitForm() {
 
     setIsLoading(true)
 
-    const trait = {
-      name,
-      type
-    }
+    const tag = { name }
 
-    const res = await fetch('http://localhost:3000/api/traits/', {
+    const res = await fetch('http://localhost:3000/api/tags', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(trait)
+      body: JSON.stringify(tag)
     })
 
     const json = await res.json()
@@ -33,7 +29,7 @@ export default function CreateTraitForm() {
     }
     if (json.data) {
       router.refresh()
-      router.push('/dashboard/traits')
+      router.push('/tags')
     }
   }
 
@@ -44,26 +40,14 @@ export default function CreateTraitForm() {
         required
         type="text"
         onChange={(e) => setName(e.target.value)}
-        value={name}
-      />
-      <span>Type:</span>
-      <select
-        required
-        onChange={(e) => setType(e.target.value)}
-        value={type}
-      >
-        <option value="TEXT">TEXT</option>
-        <option value="INT">INT</option>
-        <option value="FLOAT">FLOAT</option>
-        <option value="DATE">DATE</option>
-        <option value="BOOL">BOOL</option>
-      </select>
+        value={name}>
+      </input>
       <button
         className="btn-primary"
         disabled={isLoading}
       >
         {isLoading && <span>Adding...</span>}
-        {!isLoading && <span>Add Trait</span>}
+        {!isLoading && <span>Add Tag</span>}
       </button>
     </form>
   )
