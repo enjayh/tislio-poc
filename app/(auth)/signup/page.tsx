@@ -53,37 +53,39 @@ export default function SignUp() {
   }
 
   return (
-    <main>
+    <>
       <AuthNav />
-      <h2 className="text-center">Sign up</h2>
-      <form onSubmit={handleSubmit}>
-        <span>Email:</span>
-        <input
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          required
-        />
-        <span>Password:</span>
-        <input
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-          required
-        />
-        <span>Retype Password:</span>
-        <input
-          type="password"
-          onChange={(e) => setRepassword(e.target.value)}
-          value={repassword}
-          required
-        />
-        <button className="btn-primary">Submit</button>
-      </form>
-      <div className="text-center"><Link href="/login">Already have an account? Log in here.</Link></div>
-      {error && (
-        <div className="error">{error}</div>
-      )}
-    </main>
+      <main>
+        <h2 className="text-center">Sign up</h2>
+        <form onSubmit={handleSubmit}>
+          <span>Email:</span>
+          <input
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            required
+          />
+          <span>Password:</span>
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            required
+          />
+          <span>Retype Password:</span>
+          <input
+            type="password"
+            onChange={(e) => setRepassword(e.target.value)}
+            value={repassword}
+            required
+          />
+          <button className="btn-primary">Submit</button>
+        </form>
+        <div className="text-center"><Link href="/login">Already have an account? Log in here.</Link></div>
+        {error && (
+          <div className="error">{error}</div>
+        )}
+      </main>
+    </>
   )
 }
