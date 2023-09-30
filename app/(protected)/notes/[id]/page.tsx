@@ -34,10 +34,12 @@ export default async function Note({ params }: { params: Params }) {
   }
 
   return (
-    <main>
+    <>
       <NavBar />
-      <h2 className="text-primary text-center">Note</h2>
-      <UpdateNoteForm note={note} />
-    </main>
+      <main>
+        <h2 className="text-primary text-center">Note</h2>
+        <UpdateNoteForm note={note} />
+      </main>
+    </>
   )
 }

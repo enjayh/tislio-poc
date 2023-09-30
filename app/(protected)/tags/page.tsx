@@ -4,16 +4,18 @@ import TagList from './TagList'
 
 export default function Tags() {
   return (
-    <main>
+    <>
       <NavBar />
-      <nav>
-        <Link href="/tags/create">
-          <button className="btn-primary">New Tag</button>
-        </Link>
-      </nav>
-      <h2>Tags</h2>
-      <div>List of tags here.</div>
-      <TagList />
-    </main>
+      <main>
+        <nav>
+          <Link href="/tags/create">
+            <button className="btn-primary">New Tag</button>
+          </Link>
+        </nav>
+        <h2>Tags</h2>
+        <div>List of tags here.</div>
+        <TagList />
+      </main>
+    </>
   )
 }

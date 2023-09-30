@@ -5,10 +5,10 @@ export default function Logo() {
   return (
     <Link href="/">
       <Image
-        src='/tislio-logo.png'
+        src='/logo-small.png'
         alt='Tislio Logo'
         width={100}
-        height={100}
+        height={50}
         quality={100}
       />
     </Link>
