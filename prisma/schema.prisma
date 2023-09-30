@@ -16,11 +16,20 @@ model Account {
   email     String   @unique
   tags      Tag[]
   createdAt DateTime @default(now())
+  Trait     Trait[]
 }
 
 model Tag {
   id         Int     @id @default(autoincrement())
   name       String
+  account    Account @relation(fields: [account_id], references: [id])
+  account_id Int
+}
+
+model Trait {
+  id         Int     @id @default(autoincrement())
+  name       String
+  type       String
   account    Account @relation(fields: [account_id], references: [id])
   account_id Int
 }
