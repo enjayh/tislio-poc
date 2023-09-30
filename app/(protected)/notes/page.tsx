@@ -1,5 +1,6 @@
 import NavBar from '@/app/components/NavBar'
 import Link from 'next/link'
+import NoteList from './NotesList'
 
 export default function Notes() {
   return (
@@ -12,6 +13,7 @@ export default function Notes() {
       </nav>
       <h2>Notes</h2>
       <div>List of notes here.</div>
+      <NoteList />
     </main>
   )
 }
