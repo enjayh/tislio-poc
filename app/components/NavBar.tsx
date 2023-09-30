@@ -9,10 +9,10 @@ export default function NavBar() {
       <Link href="/dashboard" className="mr-auto">
         <h2>Dashboard</h2>
       </Link>
-      <Link href="/dashboard/tags">
+      <Link href="/tags">
         <h2>Tags</h2>
       </Link>
-      <Link href="/dashboard/traits">
+      <Link href="/traits">
         <h2>Traits</h2>
       </Link>
       <LogoutButton />

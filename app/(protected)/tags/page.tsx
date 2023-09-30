@@ -7,7 +7,7 @@ export default function Tags() {
     <main>
       <NavBar />
       <nav>
-        <Link href="/dashboard/tags/create">
+        <Link href="/tags/create">
           <button className="btn-primary">New Tag</button>
         </Link>
       </nav>

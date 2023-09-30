@@ -1,4 +1,4 @@
-import NavBar from '../components/NavBar'
+import NavBar from '@/app/components/NavBar'
 
 export default async function Dashboard() {
   return (
