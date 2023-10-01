@@ -36,15 +36,13 @@ export default function UpdateNoteForm({ note, baseTagList }: { note: Note, base
       body: JSON.stringify(updatedNote)
     })
 
-    const json = await res.json()
-
-    if (json.error) {
-      console.error('Error creating note: ' + json.error.message)
-    }
-    if (json.data) {
+    if (res.ok) {
       router.refresh()
       router.push('/notes')
+    } else {
+      console.error('Error creating note')
     }
+    
   }
 
   return (
