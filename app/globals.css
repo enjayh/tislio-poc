@@ -93,6 +93,10 @@ form>a {
   @apply flex bg-secondary w-fit rounded-3xl text-white px-3 py-1 my-3 items-center;
 }
 
+.item-pill-unselected {
+  @apply flex bg-black w-fit rounded-3xl text-white px-3 py-1 my-3 items-center;
+}
+
 .info-pill {
-  @apply flex bg-light w-fit rounded-3xl text-white px-3 py-1 my-3 items-center;
+  @apply flex bg-primary_light w-fit rounded-3xl text-white px-3 py-1 mx-10 my-3 items-center;
 }

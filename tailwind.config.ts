@@ -13,7 +13,7 @@ const config: Config = {
         secondary: '#5e00ff',
         tertiary: '#ff00a2',
         quaternary: '#a2ff00',
-        light: '#FFBE33'
+        primary_light: '#ffbe33'
       }
     }
   },
