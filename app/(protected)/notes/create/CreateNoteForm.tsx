@@ -2,12 +2,15 @@
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import SelectableTagList from '../SelectableTagList'
+import { SelectableTag } from '@/app/utils/types'
 
-export default function CreateNoteForm() {
+export default function CreateNoteForm({ baseTagList }: { baseTagList: SelectableTag[] }) {
   const router = useRouter()
 
   const [body, setBody] = useState('')
   const [completed, setCompleted] = useState(false)
+  const [tagList, setTagList] = useState(baseTagList)
   const [isLoading, setIsLoading] = useState(false)
 
   const handleCompletedChange = async () => {
@@ -21,7 +24,8 @@ export default function CreateNoteForm() {
 
     const note = {
       body,
-      completed
+      completed,
+      tagList
     }
 
     const res = await fetch('http://localhost:3000/api/notes/', {
@@ -30,14 +34,12 @@ export default function CreateNoteForm() {
       body: JSON.stringify(note)
     })
 
-    const json = await res.json()
-
-    if (json.error) {
-      console.error('Error creating note: ' + json.error.message)
-    }
-    if (json.data) {
+    if (res.ok) {
       router.refresh()
       router.push('/notes')
+    }
+    else {
+      console.error('Error creating note.')
     }
   }
 
@@ -55,6 +57,8 @@ export default function CreateNoteForm() {
         onChange={handleCompletedChange}
         checked={completed}
       />
+      <span>Tags:</span>
+      <SelectableTagList tagList={tagList} setTagList={setTagList} />
       <button
         className="btn-primary"
         disabled={isLoading}
