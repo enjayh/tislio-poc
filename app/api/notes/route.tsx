@@ -1,7 +1,7 @@
 import { getAccountIdFromRoute } from '@/app/utils/SupabaseUtils'
-import { PrismaClient } from '@prisma/client'
 import { NextRequest, NextResponse } from 'next/server'
 import { NewNote, SelectableTag } from '@/app/utils/types'
+import prisma from '@/app/utils/prisma-utils'
 
 export async function POST(request: NextRequest) {
   const note: NewNote = await request.json()
@@ -11,7 +11,6 @@ export async function POST(request: NextRequest) {
 
   const accountId = await getAccountIdFromRoute()
 
-  const prisma = new PrismaClient()
   try {
     await prisma.note.create({
       data: {

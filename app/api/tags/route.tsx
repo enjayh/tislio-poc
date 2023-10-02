@@ -1,6 +1,6 @@
 import { getAccountIdFromRoute } from '@/app/utils/SupabaseUtils'
+import prisma from '@/app/utils/prisma-utils'
 import { NewTag } from '@/app/utils/types'
-import { PrismaClient } from '@prisma/client'
 import { NextRequest, NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
@@ -10,7 +10,6 @@ export async function POST(request: NextRequest) {
 
   const accountId = await getAccountIdFromRoute()
 
-  const prisma = new PrismaClient()
   try {
     await prisma.tag.create({
       data: {

@@ -2,8 +2,7 @@ import { getAccountIdFromServerComponent } from '@/app/utils/SupabaseUtils'
 import UpdateNoteForm from './UpdateNoteForm'
 import NavBar from '@/app/components/NavBar'
 import { Note } from '@/app/utils/types'
-import { PrismaClient } from '@prisma/client'
-import { getTags } from '@/app/utils/prisma-utils'
+import prisma, { getTags } from '@/app/utils/prisma-utils'
 
 export default async function Note({ params }: { params: { id: string } }) {
   const accountId = await getAccountIdFromServerComponent()
@@ -13,7 +12,6 @@ export default async function Note({ params }: { params: { id: string } }) {
     throw new Error(`Error getting note with unknown id: ${params.id}`)
   }
 
-  const prisma = new PrismaClient()
   const note: Note | null = await prisma.note.findUnique({
     where: {
       id: noteId,
