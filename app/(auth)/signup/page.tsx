@@ -34,21 +34,19 @@ export default function SignUp() {
 
     if (error) {
       setError(error.message)
+      return
     }
-    if (!error) {
-      const res = await fetch('http://localhost:3000/api/accounts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email })
-      })
 
-      const json = await res.json()
+    const res = await fetch('http://localhost:3000/api/accounts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    })
 
-      if (json.error) {
-        console.error('Error creating account: ' + json.error.message)
-      } else {
-        router.push('/verify')
-      }
+    if (res.ok) {
+      router.push('/verify')
+    } else {
+      throw new Error('Error creating account')
     }
   }
 

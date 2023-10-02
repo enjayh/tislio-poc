@@ -9,7 +9,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
   const { data, error } = await supabase.auth.getSession()
 
   if (error) {
-    console.error('Failed to load dashboard layout: ' + error.message)
+    throw new Error(`Failed to load dashboard layout: ${error.message}`)
   }
 
   if (!data.session) {

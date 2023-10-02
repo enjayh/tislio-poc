@@ -5,9 +5,9 @@ export async function getSessionUserEmail(supabase: SupabaseClient) {
   const email = session?.user.email
 
   if (!email) {
-    console.error('No user email found in getSessionUserEmail.')
-    return ('')
+    throw new Error('No user email found in getSessionUserEmail.')
   }
+
   return (email)
 }
 
@@ -16,9 +16,10 @@ export async function getAccountId(supabase: SupabaseClient, email: string) {
     .select('id')
     .eq('email', email)
     .single()
+
   if (!account) {
-    console.error('Unable to find account in getAccountId')
-    return ('')
+    throw new Error('Unable to find account in getAccountId')
   }
+  
   return (account.id)
 }

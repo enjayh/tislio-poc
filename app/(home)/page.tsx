@@ -9,7 +9,7 @@ export default async function Home() {
   const supabase = createServerComponentClient({ cookies })
   const { data, error } = await supabase.auth.getSession()
   if (error) {
-    console.error('Error obtaining session: ' + error.message)
+    throw new Error(`Failed to load home: ${error.message}`)    
   }
 
   return (

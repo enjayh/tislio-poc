@@ -19,5 +19,11 @@ export async function POST(request: NextRequest) {
     })
     .select()
     .single()
-  return NextResponse.json({ data, error })
+
+  if (error) {
+    console.error(`Error creating trait:\n${error.message}`)
+    return NextResponse.error()
+  }
+  
+  return new NextResponse()
 }

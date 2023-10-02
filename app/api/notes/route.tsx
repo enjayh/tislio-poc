@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
       }
     })
   } catch (e) {
-    console.error('Error creating note:\n' + JSON.stringify(e))
+    console.error(`Error creating note:\n${JSON.stringify(e)}`)
     return NextResponse.error()
   }
 

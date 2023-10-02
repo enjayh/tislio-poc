@@ -27,7 +27,7 @@ export default async function Note({ params }: { params: Params }) {
     .single()
 
   if (error) {
-    console.error('Error getting note: ' + error.message)
+    throw new Error(`Error getting note: ${error.message}`)
   }
 
   const note: Note = {
@@ -44,12 +44,10 @@ export default async function Note({ params }: { params: Params }) {
     .eq('account_id', accountId)
 
   if (errorTag) {
-    console.error('Error retrieving list of tags: ' + errorTag.message)
-    redirect('/notes')
+    throw new Error(`Error retrieving list of tags: ${errorTag.message}`)
   }
   if (!dataTag) {
-    console.error('Error retrieving list of tags')
-    redirect('/notes')
+    throw new Error('Error retrieving list of tags')
   }
 
   const getNote = await prisma.note.findUnique({
@@ -67,7 +65,7 @@ export default async function Note({ params }: { params: Params }) {
   })
 
   if (!getNote) {
-    throw Error()
+    throw Error('Error getting single note')
   }
   const tags: SelectableTag[] = dataTag.map(datum => ({ id: datum.id, name: datum.name, selected: getNote?.tags.filter((tag) => tag.id === datum.id).length > 0 }))
 

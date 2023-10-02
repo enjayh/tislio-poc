@@ -33,7 +33,7 @@ export async function PUT(request: NextRequest) {
       }
     })
   } catch (e) {
-    console.error('Error updating note:\n' + JSON.stringify(e))
+    console.error(`Error updating note:\n${JSON.stringify(e)}`)
     return NextResponse.error()
   }
 
