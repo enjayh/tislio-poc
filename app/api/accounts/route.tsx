@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
   try {
     await prisma.account.create({
       data: {
-        ...account
+        email: account.email
       }
     })
   } catch (e) {
