@@ -20,7 +20,6 @@ export type SelectableTag = {
 export type NewTrait = {
   name: string,
   type: string,
-  account_id: number
 }
 
 export type Trait = {
