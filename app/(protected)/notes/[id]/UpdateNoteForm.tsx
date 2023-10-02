@@ -2,16 +2,17 @@
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import Note from '../Note'
-import { SelectableTag } from '@/app/utils/types'
+import { Note, Tag, SelectableTag, UpdateNote } from '@/app/utils/types'
 import SelectableTagList from '../SelectableTagList'
 
-export default function UpdateNoteForm({ note, baseTagList }: { note: Note, baseTagList: SelectableTag[] }) {
+export default function UpdateNoteForm({ note, tags }: { note: Note, tags: Tag[] }) {
   const router = useRouter()
+
+  const selectableTags: SelectableTag[] = tags.map(tag => ({ id: tag.id, name: tag.name, selected: note.tags.filter((noteTag) => noteTag.id === tag.id).length > 0 }))
 
   const [body, setBody] = useState(note.body)
   const [completed, setCompleted] = useState(note.completed)
-  const [tagList, setTagList] = useState(baseTagList)
+  const [selectableTagList, setSelectableTagList] = useState(selectableTags)
   const [isLoading, setIsLoading] = useState(false)
 
   const handleCompletedChange = async () => {
@@ -23,11 +24,11 @@ export default function UpdateNoteForm({ note, baseTagList }: { note: Note, base
 
     setIsLoading(true)
 
-    const updatedNote = {
+    const updatedNote: UpdateNote = {
+      id: note.id,
       body,
       completed,
-      id: note.id,
-      tagList
+      tags: selectableTagList
     }
 
     const res = await fetch('http://localhost:3000/api/notes/' + note.id, {
@@ -42,7 +43,7 @@ export default function UpdateNoteForm({ note, baseTagList }: { note: Note, base
     } else {
       throw new Error('Error creating note')
     }
-    
+
   }
 
   return (
@@ -61,7 +62,7 @@ export default function UpdateNoteForm({ note, baseTagList }: { note: Note, base
       />
       <div className="info-pill">Created: {new Date(note.created_at).toLocaleString()}</div>
       <div className="info-pill">Updated: {note.updated_at ? new Date(note.updated_at).toLocaleString() : 'Never'}</div>
-      <SelectableTagList tagList={tagList} setTagList={setTagList} />
+      <SelectableTagList tagList={selectableTagList} setTagList={setSelectableTagList} />
       <button
         className="btn-primary"
         disabled={isLoading}

@@ -21,13 +21,13 @@ model Account {
 }
 
 model Note {
-  id         Int       @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   body       String
   completed  Boolean
-  account    Account   @relation(fields: [account_id], references: [id])
+  account    Account  @relation(fields: [account_id], references: [id])
   account_id Int
-  created_at DateTime  @default(now())
-  updated_at DateTime? @updatedAt
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
   tags       Tag[]
 }
 

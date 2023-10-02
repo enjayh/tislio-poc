@@ -3,6 +3,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers'
 import { TiTick } from 'react-icons/ti'
 import Link from 'next/link';
+import { PrismaClient } from '@prisma/client';
 
 export const dynamic = 'force-dynamic'
 
@@ -19,16 +20,20 @@ export default async function NoteList() {
   const email = await getSessionUserEmail(supabase)
   const accountId = await getAccountId(supabase, email)
 
-  const { data, error } = await supabase
-    .from('Note')
-    .select('body, completed, created_at, updated_at, id')
-    .eq('account_id', accountId)
-
-  if (error) {
-    throw new Error(`Error getting note: ${error.message}`)
-  }
-
-  const notes = data || []
+  const prisma = new PrismaClient()
+  const notes: Note[] = await prisma.note.findMany({
+    where: {
+      account_id: accountId
+    },
+    include: {
+      tags: {
+        select: {
+          id: true,
+          name: true
+        }
+      }
+    }
+  })
 
   return (
     <>

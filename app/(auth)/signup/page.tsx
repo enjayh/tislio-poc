@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import Link from 'next/link'
 import AuthNav from '../AuthNav'
+import { NewAccount } from '@/app/utils/types'
 
 export default function SignUp() {
   const [email, setEmail] = useState('')
@@ -37,10 +38,14 @@ export default function SignUp() {
       return
     }
 
+    const newAccount: NewAccount = {
+      email: email
+    }
+
     const res = await fetch('http://localhost:3000/api/accounts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email })
+      body: JSON.stringify(newAccount)
     })
 
     if (res.ok) {

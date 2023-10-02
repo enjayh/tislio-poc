@@ -1,5 +1,6 @@
 'use client'
 
+import { NewTrait } from '@/app/utils/types'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
@@ -15,7 +16,7 @@ export default function CreateTraitForm() {
 
     setIsLoading(true)
 
-    const trait = {
+    const trait: NewTrait = {
       name,
       type
     }

@@ -3,14 +3,16 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import SelectableTagList from '../SelectableTagList'
-import { SelectableTag } from '@/app/utils/types'
+import { NewNote, SelectableTag, Tag } from '@/app/utils/types'
 
-export default function CreateNoteForm({ baseTagList }: { baseTagList: SelectableTag[] }) {
+export default function CreateNoteForm({ tags }: { tags: Tag[] }) {
+  const selectableTags: SelectableTag[] = tags.map(tag => ({ id: tag.id, name: tag.name, selected: false }))
+
   const router = useRouter()
 
   const [body, setBody] = useState('')
   const [completed, setCompleted] = useState(false)
-  const [tagList, setTagList] = useState(baseTagList)
+  const [selectableTagList, setSelectableTagList] = useState(selectableTags)
   const [isLoading, setIsLoading] = useState(false)
 
   const handleCompletedChange = async () => {
@@ -22,10 +24,10 @@ export default function CreateNoteForm({ baseTagList }: { baseTagList: Selectabl
 
     setIsLoading(true)
 
-    const note = {
+    const note: NewNote = {
       body,
       completed,
-      tagList
+      tags: selectableTagList
     }
 
     const res = await fetch('http://localhost:3000/api/notes/', {
@@ -58,7 +60,7 @@ export default function CreateNoteForm({ baseTagList }: { baseTagList: Selectabl
         checked={completed}
       />
       <span>Tags:</span>
-      <SelectableTagList tagList={tagList} setTagList={setTagList} />
+      <SelectableTagList tagList={selectableTagList} setTagList={setSelectableTagList} />
       <button
         className="btn-primary"
         disabled={isLoading}

@@ -1,5 +1,6 @@
 'use client'
 
+import { NewTag } from '@/app/utils/types'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
@@ -14,7 +15,7 @@ export default function CreateTagForm() {
 
     setIsLoading(true)
 
-    const tag = { name }
+    const tag: NewTag = { name }
 
     const res = await fetch('http://localhost:3000/api/tags', {
       method: 'POST',
