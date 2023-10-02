@@ -5,6 +5,7 @@ import UpdateNoteForm from './UpdateNoteForm'
 import NavBar from '@/app/components/NavBar'
 import { Tag, Note } from '@/app/utils/types'
 import { PrismaClient } from '@prisma/client'
+import { getTags } from '@/app/utils/prisma-utils'
 
 export default async function Note({ params }: { params: { id: string } }) {
   const prisma = new PrismaClient()
@@ -37,15 +38,7 @@ export default async function Note({ params }: { params: { id: string } }) {
     throw new Error('Error reading note')
   }
 
-  const tags: Tag[] = await prisma.tag.findMany({
-    where: {
-      account_id: accountId
-    },
-    select: {
-      id: true,
-      name: true
-    }
-  })
+  const tags = await getTags(prisma, accountId)
 
   return (
     <>

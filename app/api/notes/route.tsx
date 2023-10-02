@@ -7,11 +7,9 @@ import { SelectableTag } from '@/app/utils/types'
 
 export async function POST(request: NextRequest) {
   const note = await request.json()
-
-  const tags = note.tagList
+  const tags = note.tags
     .filter((tag: SelectableTag) => tag.selected)
     .map((tag: SelectableTag) => ({ id: tag.id }))
-
 
   const supabase = createRouteHandlerClient({ cookies })
   const email = await getSessionUserEmail(supabase)

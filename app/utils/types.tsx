@@ -33,8 +33,7 @@ export type Trait = {
 export type NewNote = {
   body: string,
   completed: boolean,
-  account_id: number,
-  tags: Tag[],
+  tags: SelectableTag[],
 }
 
 export type Note = {
@@ -53,54 +52,3 @@ export type UpdateNote = {
   completed: boolean;
   tags: Tag[]
 }
-
-
-/*
-Note
-  Create
-    body-new
-    completed-new
-    tags-new
-      id
-    traits-new
-      id
-      value
-    account_id
-  Read 1
-    body
-    completed
-    created_at
-    updated_at
-    tags
-      id
-      name
-    traits
-      id
-      name
-      value
-  Read All
-    id
-    body
-    completed
-    created_at
-    updated_at
-    tags
-      id
-      name
-    traits
-      id
-      name
-      value
-  Update
-    id
-    body
-    completed
-    tags
-      id
-    traits
-      id
-      value
-  Delete
-    id
-
-*/
