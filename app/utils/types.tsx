@@ -4,7 +4,6 @@ export type NewAccount = {
 
 export type NewTag = {
   name: string,
-  account_id: number
 }
 
 export type Tag = {

@@ -1,29 +1,26 @@
 import { getAccountId, getSessionUserEmail } from '@/app/utils/SupabaseUtils';
+import { Tag } from '@/app/utils/types';
+import { PrismaClient } from '@prisma/client';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers'
 
 export const dynamic = 'force-dynamic'
-
-interface Tag {
-  name: string;
-  id: number;
-}
 
 export default async function TagList() {
   const supabase = createRouteHandlerClient({ cookies })
   const email = await getSessionUserEmail(supabase)
   const accountId = await getAccountId(supabase, email)
 
-  const { data, error } = await supabase
-    .from('Tag')
-    .select('name, id')
-    .eq('account_id', accountId)
-
-  if (error) {
-    throw new Error(`Error getting tag: ${error.message}`)
-  }
-
-  const tags = data || []
+  const prisma = new PrismaClient()
+  const tags: Tag[] = await prisma.tag.findMany({
+    where: {
+      account_id: accountId
+    },
+    select: {
+      id: true,
+      name: true
+    }
+  })
 
   return (
     <>
