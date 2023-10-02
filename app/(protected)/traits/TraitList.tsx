@@ -21,7 +21,7 @@ export default async function TraitList() {
     .eq('account_id', accountId)
 
   if (error) {
-    console.error('Error getting trait: ' + error.message)
+    throw new Error(`Error getting trait: ${error.message}`)
   }
 
   const trait = data || []

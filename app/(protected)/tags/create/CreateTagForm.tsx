@@ -22,14 +22,11 @@ export default function CreateTagForm() {
       body: JSON.stringify(tag)
     })
 
-    const json = await res.json()
-
-    if (json.error) {
-      console.error('Error creating tag: ' + json.error.message)
-    }
-    if (json.data) {
+    if (res.ok) {
       router.refresh()
       router.push('/tags')
+    } else {
+      throw new Error('Error creating tag')
     }
   }
 

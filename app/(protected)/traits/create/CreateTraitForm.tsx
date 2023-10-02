@@ -26,14 +26,11 @@ export default function CreateTraitForm() {
       body: JSON.stringify(trait)
     })
 
-    const json = await res.json()
-
-    if (json.error) {
-      console.error('Error creating tag: ' + json.error.message)
-    }
-    if (json.data) {
+    if (res.ok) {
       router.refresh()
       router.push('/traits')
+    } else {
+      throw new Error('Error creating tag')
     }
   }
 

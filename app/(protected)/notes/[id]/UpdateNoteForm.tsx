@@ -40,7 +40,7 @@ export default function UpdateNoteForm({ note, baseTagList }: { note: Note, base
       router.refresh()
       router.push('/notes')
     } else {
-      console.error('Error creating note')
+      throw new Error('Error creating note')
     }
     
   }

@@ -25,7 +25,7 @@ export default async function NoteList() {
     .eq('account_id', accountId)
 
   if (error) {
-    console.error('Error getting note: ' + error.message)
+    throw new Error(`Error getting note: ${error.message}`)
   }
 
   const notes = data || []

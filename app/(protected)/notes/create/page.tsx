@@ -4,7 +4,6 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { getAccountId, getSessionUserEmail } from '@/app/utils/SupabaseUtils'
 import { SelectableTag } from '@/app/utils/types'
-import { redirect } from 'next/navigation'
 
 export default async function CreateNote() {
   const supabase = createServerComponentClient({ cookies })
@@ -17,12 +16,10 @@ export default async function CreateNote() {
     .eq('account_id', accountId)
 
   if (error) {
-    console.error('Error retrieving list of tags: ' + error.message)
-    redirect('/notes')
+    throw new Error(`Error retrieving list of tags: ${error.message}`)
   }
   if (!data) {
-    console.error('Error retrieving list of tags')
-    redirect('/notes')
+    throw new Error('Error retrieving list of tags')
   }
 
   const tags: SelectableTag[] = data.map(datum => ({ id: datum.id, name: datum.name, selected: false }))

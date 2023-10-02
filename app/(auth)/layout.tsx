@@ -9,8 +9,7 @@ export default async function AuthLayout({ children }: { children: React.ReactNo
   const { data, error } = await supabase.auth.getSession()
 
   if (error) {
-    console.error('Failed to load auth layout: ' + error.message)
-    redirect('/login')
+    throw new Error(`Failed to load auth layout: ${error.message}`)
   } else if (data.session) {
     redirect('/dashboard')
   }

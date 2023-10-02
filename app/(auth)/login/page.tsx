@@ -24,12 +24,11 @@ export default function Login() {
     })
 
     if (error) {
-      setError(error.message)
+      throw new Error(error.message)
     }
-    if (!error) {
-      router.refresh()
-      router.push('/dashboard')
-    }
+
+    router.refresh()
+    router.push('/dashboard')
   }
 
   return (

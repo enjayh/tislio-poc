@@ -20,7 +20,7 @@ export default async function TagList() {
     .eq('account_id', accountId)
 
   if (error) {
-    console.error('Error getting tag: ' + error.message)
+    throw new Error(`Error getting tag: ${error.message}`)
   }
 
   const tags = data || []

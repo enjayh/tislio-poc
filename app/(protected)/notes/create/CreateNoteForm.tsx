@@ -39,7 +39,7 @@ export default function CreateNoteForm({ baseTagList }: { baseTagList: Selectabl
       router.push('/notes')
     }
     else {
-      console.error('Error creating note.')
+      throw new Error('Error creating note.')
     }
   }
 

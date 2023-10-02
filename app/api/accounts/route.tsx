@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest) {
   const account = await request.json()
-
+  
   const prisma = new PrismaClient()
 
   try {
@@ -15,11 +15,9 @@ export async function POST(request: NextRequest) {
       }
     })
   } catch (e) {
-    console.error('Error adding account: ' + JSON.stringify(e))
-    return NextResponse.json({
-      error: { message: 'Error adding account :(' }
-    })
+    console.error(`Error adding account:\n${JSON.stringify(e)}`)
+    return NextResponse.error()
   }
 
-  return NextResponse.json({})
+  return new NextResponse()
 }
