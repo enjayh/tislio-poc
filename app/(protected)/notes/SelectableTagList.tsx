@@ -5,16 +5,18 @@ export default function SelectableTagList({ tagList, setTagList }: { tagList: Se
   const handleClick = (id: number) => {
     const updated = tagList.map((tag: SelectableTag) => {
       if (tag.id === id) {
-        return {
+        const selectableTag: SelectableTag = {
           id: tag.id,
           name: tag.name,
           selected: !tag.selected
         }
+        return selectableTag
       }
       else {
         return tag
       }
     })
+
     setTagList(updated)
   }
 
@@ -24,7 +26,7 @@ export default function SelectableTagList({ tagList, setTagList }: { tagList: Se
         <span
           key={tag.id}
           className={tag.selected ? "item-pill" : "item-pill-unselected"}
-          onClick={(e) => handleClick(tag.id)}
+          onClick={() => handleClick(tag.id)}
         >
           {tag.name} | {String(tag.selected)}
         </span>

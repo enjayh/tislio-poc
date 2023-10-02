@@ -7,10 +7,10 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function PUT(request: NextRequest) {
   const note = await request.json()
-  const tags = note.tagList
+  const tags = note.tags
     .filter((tag: SelectableTag) => tag.selected)
     .map((tag: SelectableTag) => ({ id: tag.id }))
-  const notTags = note.tagList
+  const notTags = note.tags
     .filter((tag: SelectableTag) => !tag.selected)
     .map((tag: SelectableTag) => ({ id: tag.id }))
 
