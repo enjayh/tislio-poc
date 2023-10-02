@@ -1,6 +1,4 @@
-import { getAccountId, getSessionUserEmail } from '@/app/utils/SupabaseUtils';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers'
+import { getAccountIdFromServerComponent } from '@/app/utils/SupabaseUtils';
 import { TiTick } from 'react-icons/ti'
 import Link from 'next/link';
 import { PrismaClient } from '@prisma/client';
@@ -16,9 +14,7 @@ interface Note {
 }
 
 export default async function NoteList() {
-  const supabase = createServerComponentClient({ cookies })
-  const email = await getSessionUserEmail(supabase)
-  const accountId = await getAccountId(supabase, email)
+  const accountId = await getAccountIdFromServerComponent()
 
   const prisma = new PrismaClient()
   const notes: Note[] = await prisma.note.findMany({

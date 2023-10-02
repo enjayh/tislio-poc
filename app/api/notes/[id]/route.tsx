@@ -1,8 +1,6 @@
-import { getAccountId, getSessionUserEmail } from '@/app/utils/SupabaseUtils'
+import { getAccountIdFromRoute } from '@/app/utils/SupabaseUtils'
 import { SelectableTag, UpdateNote } from '@/app/utils/types'
 import { PrismaClient } from '@prisma/client'
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function PUT(request: NextRequest) {
@@ -14,9 +12,7 @@ export async function PUT(request: NextRequest) {
     .filter((tag: SelectableTag) => !tag.selected)
     .map((tag: SelectableTag) => ({ id: tag.id }))
 
-  const supabase = createRouteHandlerClient({ cookies })
-  const email = await getSessionUserEmail(supabase)
-  const accountId = await getAccountId(supabase, email)
+  const accountId = await getAccountIdFromRoute()
 
   const prisma = new PrismaClient()
   try {
