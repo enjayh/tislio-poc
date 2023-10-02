@@ -80,7 +80,7 @@ The email address of the Account is used to associate with the current email in 
 | id | pk |
 | note_id | fk |
 | trait_id | fk |
-| trait_value | text |
+| value | text |
 
 ## UI
 - Account

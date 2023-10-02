@@ -1,3 +1,5 @@
+'use client'
+
 import { Dispatch, SetStateAction } from 'react'
 import { SelectableTag } from '@/app/utils/types'
 

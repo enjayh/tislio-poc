@@ -3,16 +3,29 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import SelectableTagList from '../SelectableTagList'
-import { NewNote, SelectableTag, Tag } from '@/app/utils/types'
+import { NewNote, SelectableTag, SelectableTrait, Tag, Trait } from '@/app/utils/types'
+import SelectableTraitList from '../SelectableTraitList'
 
-export default function CreateNoteForm({ tags }: { tags: Tag[] }) {
-  const selectableTags: SelectableTag[] = tags.map(tag => ({ id: tag.id, name: tag.name, selected: false }))
+export default function CreateNoteForm({ tags, traits }: { tags: Tag[], traits: Trait[] }) {
+  const selectableTags: SelectableTag[] = tags.map(tag => ({
+    id: tag.id,
+    name: tag.name,
+    selected: false
+  }))
+  const selectableTraits: SelectableTrait[] = traits.map(trait => ({
+    id: trait.id,
+    name: trait.name,
+    type: trait.type,
+    value: '',
+    selected: false
+  }))
 
   const router = useRouter()
 
   const [body, setBody] = useState('')
   const [completed, setCompleted] = useState(false)
   const [selectableTagList, setSelectableTagList] = useState(selectableTags)
+  const [selectableTraitList, setSelectableTraitList] = useState(selectableTraits)
   const [isLoading, setIsLoading] = useState(false)
 
   const handleCompletedChange = async () => {
@@ -27,7 +40,8 @@ export default function CreateNoteForm({ tags }: { tags: Tag[] }) {
     const note: NewNote = {
       body,
       completed,
-      tags: selectableTagList
+      tags: selectableTagList,
+      traits: selectableTraitList
     }
 
     const res = await fetch('http://localhost:3000/api/notes/', {
@@ -61,6 +75,8 @@ export default function CreateNoteForm({ tags }: { tags: Tag[] }) {
       />
       <span>Tags:</span>
       <SelectableTagList tagList={selectableTagList} setTagList={setSelectableTagList} />
+      <span>Traits:</span>
+      <SelectableTraitList traitList={selectableTraitList} setTraitList={setSelectableTraitList} />
       <button
         className="btn-primary"
         disabled={isLoading}

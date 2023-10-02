@@ -31,7 +31,7 @@ export default async function Note({ params }: { params: { id: string } }) {
     throw new Error('Error reading note')
   }
 
-  const tags = await getTags(prisma, accountId)
+  const tags = await getTags(accountId)
 
   return (
     <>

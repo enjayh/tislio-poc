@@ -28,10 +28,19 @@ export type Trait = {
   type: string
 }
 
+export type SelectableTrait = {
+  id: number,
+  name: string,
+  type: string,
+  value: string,
+  selected: boolean
+}
+
 export type NewNote = {
   body: string,
   completed: boolean,
   tags: SelectableTag[],
+  traits: SelectableTrait[]
 }
 
 export type Note = {
