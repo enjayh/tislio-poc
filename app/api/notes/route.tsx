@@ -1,9 +1,7 @@
-import { getAccountId, getSessionUserEmail } from '@/app/utils/SupabaseUtils'
-import { PrismaClient } from '@prisma/client'
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
+import { getAccountIdFromRoute } from '@/app/utils/SupabaseUtils'
 import { NextRequest, NextResponse } from 'next/server'
 import { NewNote, SelectableTag } from '@/app/utils/types'
+import prisma from '@/app/utils/prisma-utils'
 
 export async function POST(request: NextRequest) {
   const note: NewNote = await request.json()
@@ -11,11 +9,8 @@ export async function POST(request: NextRequest) {
     .filter((tag: SelectableTag) => tag.selected)
     .map((tag: SelectableTag) => ({ id: tag.id }))
 
-  const supabase = createRouteHandlerClient({ cookies })
-  const email = await getSessionUserEmail(supabase)
-  const accountId = await getAccountId(supabase, email)
+  const accountId = await getAccountIdFromRoute()
 
-  const prisma = new PrismaClient()
   try {
     await prisma.note.create({
       data: {

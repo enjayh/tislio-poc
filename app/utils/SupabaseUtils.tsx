@@ -1,25 +1,36 @@
-import { SupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { SupabaseClient, createRouteHandlerClient, createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
 
-export async function getSessionUserEmail(supabase: SupabaseClient) {
-  const { data: { session } } = await supabase.auth.getSession()
-  const email = session?.user.email
-
-  if (!email) {
-    throw new Error('No user email found in getSessionUserEmail.')
-  }
-
-  return (email)
+export async function getAccountIdFromRoute(): Promise<number> {
+  const supabase = createRouteHandlerClient({ cookies })
+  return getAccountIdFromSupabaseClient(supabase)
 }
 
-export async function getAccountId(supabase: SupabaseClient, email: string) {
-  const { data: account } = await supabase.from('Account')
+export async function getAccountIdFromServerComponent(): Promise<number> {
+  const supabase = createServerComponentClient({ cookies })
+  return getAccountIdFromSupabaseClient(supabase)
+}
+
+async function getAccountIdFromSupabaseClient(supabase: SupabaseClient): Promise<number> {
+  const { data: { session }, error } = await supabase.auth.getSession()
+  if (error) {
+    throw new Error(`Failed to get session: ${error.message}`)
+  }
+  if (!session) {
+    throw new Error('Failed to get session')
+  }
+  const email = session.user.email
+
+  const { data: account, error: accountError } = await supabase.from('Account')
     .select('id')
     .eq('email', email)
     .single()
-
-  if (!account) {
-    throw new Error('Unable to find account in getAccountId')
+  if (accountError) {
+    throw new Error(`Failed to get account: ${accountError.message}`)
   }
-  
-  return (account.id)
+  if (!account) {
+    throw new Error('Failed to get account')
+  }
+
+  return account.id
 }

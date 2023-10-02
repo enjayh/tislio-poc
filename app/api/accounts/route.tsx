@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
+import prisma from '@/app/utils/prisma-utils'
 
 export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest) {
   const account = await request.json()
-  
-  const prisma = new PrismaClient()
 
   try {
     await prisma.account.create({
