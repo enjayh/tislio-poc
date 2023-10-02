@@ -48,5 +48,5 @@ export type UpdateNote = {
   id: number;
   body: string;
   completed: boolean;
-  tags: Tag[]
+  tags: SelectableTag[]
 }

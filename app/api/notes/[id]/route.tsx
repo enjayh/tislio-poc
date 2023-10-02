@@ -1,12 +1,12 @@
 import { getAccountId, getSessionUserEmail } from '@/app/utils/SupabaseUtils'
-import { SelectableTag } from '@/app/utils/types'
+import { SelectableTag, UpdateNote } from '@/app/utils/types'
 import { PrismaClient } from '@prisma/client'
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function PUT(request: NextRequest) {
-  const note = await request.json()
+  const note: UpdateNote = await request.json()
   const tags = note.tags
     .filter((tag: SelectableTag) => tag.selected)
     .map((tag: SelectableTag) => ({ id: tag.id }))
