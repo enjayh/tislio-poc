@@ -4,12 +4,11 @@ import { cookies } from 'next/headers'
 import UpdateNoteForm from './UpdateNoteForm'
 import NavBar from '@/app/components/NavBar'
 import Note from '../Note'
-import { redirect } from 'next/navigation'
 import { SelectableTag } from '@/app/utils/types'
 import { PrismaClient } from '@prisma/client'
 
 interface Params {
-  id: number
+  id: String
 }
 
 export default async function Note({ params }: { params: Params }) {
@@ -19,41 +18,38 @@ export default async function Note({ params }: { params: Params }) {
   const email = await getSessionUserEmail(supabase)
   const accountId = await getAccountId(supabase, email)
 
-  const { data, error } = await supabase
-    .from('Note')
-    .select('body, completed, created_at, updated_at, id')
-    .eq('account_id', accountId)
-    .eq('id', params.id)
-    .single()
+  const note: Note | null = await prisma.note.findUnique({
+    where: {
+      id: parseInt(params.id.toString()),
+      account_id: accountId
+    },
+    select: {
+      id: true,
+      body: true,
+      completed: true,
+      created_at: true,
+      updated_at: true
+    }
+  })
 
-  if (error) {
-    throw new Error(`Error getting note: ${error.message}`)
+  if (!note) {
+    throw new Error('Error getting note')
   }
 
-  const note: Note = {
-    body: data?.body,
-    completed: data?.completed,
-    created_at: data?.created_at,
-    updated_at: data?.updated_at,
-    id: data?.id
-  }
-
-  const { data: dataTag, error: errorTag } = await supabase
-    .from('Tag')
-    .select('id, name')
-    .eq('account_id', accountId)
-
-  if (errorTag) {
-    throw new Error(`Error retrieving list of tags: ${errorTag.message}`)
-  }
-  if (!dataTag) {
-    throw new Error('Error retrieving list of tags')
-  }
+  const accountTags = await prisma.tag.findMany({
+    where: {
+      account_id: accountId
+    },
+    select: {
+      id: true,
+      name: true
+    }
+  })
 
   const getNote = await prisma.note.findUnique({
     where: {
       'account_id': accountId,
-      id: data?.id
+      id: note.id
     },
     include: {
       tags: {
@@ -67,7 +63,7 @@ export default async function Note({ params }: { params: Params }) {
   if (!getNote) {
     throw Error('Error getting single note')
   }
-  const tags: SelectableTag[] = dataTag.map(datum => ({ id: datum.id, name: datum.name, selected: getNote?.tags.filter((tag) => tag.id === datum.id).length > 0 }))
+  const tags: SelectableTag[] = accountTags.map(datum => ({ id: datum.id, name: datum.name, selected: getNote?.tags.filter((tag) => tag.id === datum.id).length > 0 }))
 
   return (
     <>
