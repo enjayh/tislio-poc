@@ -12,7 +12,8 @@ export default function SelectableTraitList({ traitList, setTraitList }: { trait
           name: trait.name,
           type: trait.type,
           value: trait.value,
-          selected: !trait.selected
+          selected: !trait.selected,
+          existing: trait.existing
         }
         return selectableTrait
       } else {
@@ -31,7 +32,8 @@ export default function SelectableTraitList({ traitList, setTraitList }: { trait
           name: trait.name,
           type: trait.type,
           value: value,
-          selected: trait.selected
+          selected: trait.selected,
+          existing: trait.existing
         }
         return selectableTrait
       } else {
@@ -45,20 +47,21 @@ export default function SelectableTraitList({ traitList, setTraitList }: { trait
   return (
     <>
       {traitList.map((trait) => (
-        <>
+        <div key={trait.id}>
           <span
-            key={trait.id}
             className={trait.selected ? "item-pill" : "item-pill-unselected"}
             onClick={() => onClick(trait.id)}
           >
             {trait.name} | {trait.type}
 
           </span>
-          <input
-            onChange={(e) => onChange(trait.id, e.target.value)}
-            value={trait.value}
-          />
-        </>
+          {trait.selected &&
+            <input
+              onChange={(e) => onChange(trait.id, e.target.value)}
+              value={trait.value}
+            />
+          }
+        </div>
       ))}
     </>
   )

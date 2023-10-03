@@ -2,17 +2,31 @@
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { Note, Tag, SelectableTag, UpdateNote } from '@/app/utils/types'
+import { Note, Tag, SelectableTag, UpdateNote, Trait, SelectableTrait } from '@/app/utils/types'
 import SelectableTagList from '../SelectableTagList'
+import SelectableTraitList from '../SelectableTraitList'
 
-export default function UpdateNoteForm({ note, tags }: { note: Note, tags: Tag[] }) {
+export default function UpdateNoteForm({ note, tags, traits }: { note: Note, tags: Tag[], traits: Trait[] }) {
   const router = useRouter()
 
-  const selectableTags: SelectableTag[] = tags.map(tag => ({ id: tag.id, name: tag.name, selected: note.tags.filter((noteTag) => noteTag.id === tag.id).length > 0 }))
+  const selectableTags: SelectableTag[] = tags.map(tag => ({
+    id: tag.id,
+    name: tag.name,
+    selected: note.tags.filter(noteTag => noteTag.id === tag.id).length > 0
+  }))
+  const selectableTraits: SelectableTrait[] = traits.map(trait => ({
+    id: trait.id,
+    name: trait.name,
+    type: trait.type,
+    value: note.traits.find(noteTrait => noteTrait.trait_id === trait.id)?.value || '',
+    selected: note.traits.filter(noteTrait => noteTrait.trait_id === trait.id).length > 0,
+    existing: note.traits.filter(noteTrait => noteTrait.trait_id === trait.id).length > 0
+  }))
 
   const [body, setBody] = useState(note.body)
   const [completed, setCompleted] = useState(note.completed)
   const [selectableTagList, setSelectableTagList] = useState(selectableTags)
+  const [selectableTraitList, setSelectableTraitList] = useState(selectableTraits)
   const [isLoading, setIsLoading] = useState(false)
 
   const handleCompletedChange = async () => {
@@ -28,7 +42,8 @@ export default function UpdateNoteForm({ note, tags }: { note: Note, tags: Tag[]
       id: note.id,
       body,
       completed,
-      tags: selectableTagList
+      tags: selectableTagList,
+      traits: selectableTraitList
     }
 
     const res = await fetch('http://localhost:3000/api/notes/' + note.id, {
@@ -62,7 +77,10 @@ export default function UpdateNoteForm({ note, tags }: { note: Note, tags: Tag[]
       />
       <div className="info-pill">Created: {new Date(note.created_at).toLocaleString()}</div>
       <div className="info-pill">Updated: {note.updated_at ? new Date(note.updated_at).toLocaleString() : 'Never'}</div>
+      <span>Tags:</span>
       <SelectableTagList tagList={selectableTagList} setTagList={setSelectableTagList} />
+      <span>Traits:</span>
+      <SelectableTraitList traitList={selectableTraitList} setTraitList={setSelectableTraitList} />
       <button
         className="btn-primary"
         disabled={isLoading}

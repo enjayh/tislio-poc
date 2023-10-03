@@ -1,7 +1,7 @@
 import NavBar from '@/app/components/NavBar'
 import CreateNoteForm from './CreateNoteForm'
 import { getAccountIdFromServerComponent } from '@/app/utils/SupabaseUtils'
-import prisma, { getTags, getTraits } from '@/app/utils/prisma-utils'
+import { getTags, getTraits } from '@/app/utils/prisma-utils'
 
 export default async function CreateNote() {
   const accountId = await getAccountIdFromServerComponent()

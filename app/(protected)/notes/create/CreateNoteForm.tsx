@@ -17,7 +17,8 @@ export default function CreateNoteForm({ tags, traits }: { tags: Tag[], traits: 
     name: trait.name,
     type: trait.type,
     value: '',
-    selected: false
+    selected: false,
+    existing: false
   }))
 
   const router = useRouter()

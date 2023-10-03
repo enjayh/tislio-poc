@@ -2,7 +2,7 @@ import { getAccountIdFromServerComponent } from '@/app/utils/SupabaseUtils'
 import UpdateNoteForm from './UpdateNoteForm'
 import NavBar from '@/app/components/NavBar'
 import { Note } from '@/app/utils/types'
-import prisma, { getTags } from '@/app/utils/prisma-utils'
+import prisma, { getTags, getTraits } from '@/app/utils/prisma-utils'
 
 export default async function Note({ params }: { params: { id: string } }) {
   const accountId = await getAccountIdFromServerComponent()
@@ -23,6 +23,17 @@ export default async function Note({ params }: { params: { id: string } }) {
           id: true,
           name: true
         }
+      },
+      traits: {
+        include: {
+          trait: {
+            select: {
+              id: true,
+              name: true,
+              type: true
+            }
+          }
+        }
       }
     }
   })
@@ -32,13 +43,14 @@ export default async function Note({ params }: { params: { id: string } }) {
   }
 
   const tags = await getTags(accountId)
+  const traits = await getTraits(accountId)
 
   return (
     <>
       <NavBar />
       <main>
         <h2 className="text-primary text-center">Note</h2>
-        <UpdateNoteForm note={note} tags={tags} />
+        <UpdateNoteForm note={note} tags={tags} traits={traits} />
       </main>
     </>
   )
