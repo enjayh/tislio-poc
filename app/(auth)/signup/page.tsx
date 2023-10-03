@@ -84,7 +84,7 @@ export default function SignUp() {
           />
           <button className="btn-primary">Submit</button>
         </form>
-        <div className="text-center"><Link href="/login">Already have an account? Log in here.</Link></div>
+        <div className="text-center"><Link href="/login">Already have an account? <u>Log in here.</u></Link></div>
         {error && (
           <div className="error">{error}</div>
         )}
