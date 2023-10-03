@@ -1,8 +1,8 @@
 'use client'
 
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { TiDelete } from "react-icons/ti"
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { TiDelete } from 'react-icons/ti'
 
 export default function DeleteNoteButton({ noteId }: { noteId: number }) {
   const [isLoading, setIsLoading] = useState(false)
