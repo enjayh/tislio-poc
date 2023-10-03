@@ -100,3 +100,22 @@ form>a {
 .info-pill {
   @apply flex bg-primary_light w-fit rounded-3xl text-white px-3 py-1 mx-10 my-3 items-center;
 }
+
+.btn-signup {
+  @apply block mx-auto my-5;
+}
+
+.icon-home {
+  @apply block mx-auto items-center my-14;
+  transform: scale(5);
+}
+
+.three-column {
+  @apply flex my-8 gap-x-8;
+}
+
+.three-column>* {
+  @apply border-2 rounded-xl p-4;
+  width: calc(100% - 4rem / 3);
+  border-color: rgb(229 231 235);
+}
