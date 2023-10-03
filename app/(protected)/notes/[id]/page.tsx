@@ -3,6 +3,7 @@ import UpdateNoteForm from './UpdateNoteForm'
 import NavBar from '@/app/components/NavBar'
 import { Note } from '@/app/utils/types'
 import prisma, { getTags, getTraits } from '@/app/utils/prisma-utils'
+import DeleteNoteButton from './DeleteNoteButton'
 
 export default async function Note({ params }: { params: { id: string } }) {
   const accountId = await getAccountIdFromServerComponent()
@@ -38,10 +39,6 @@ export default async function Note({ params }: { params: { id: string } }) {
     }
   })
 
-  if (!note) {
-    throw new Error('Error reading note')
-  }
-
   const tags = await getTags(accountId)
   const traits = await getTraits(accountId)
 
@@ -50,7 +47,13 @@ export default async function Note({ params }: { params: { id: string } }) {
       <NavBar />
       <main>
         <h2 className="text-primary text-center">Note</h2>
-        <UpdateNoteForm note={note} tags={tags} traits={traits} />
+        {note && (
+          <>
+            <DeleteNoteButton noteId={note.id} />
+            <UpdateNoteForm note={note} tags={tags} traits={traits} />
+          </>
+        )}
+
       </main>
     </>
   )

@@ -92,3 +92,32 @@ export async function PUT(request: NextRequest) {
 
   return new NextResponse()
 }
+
+export async function DELETE(_: NextRequest, { params }: { params: { id: string } }) {
+  const noteId = parseInt(params.id)
+  if (isNaN(noteId)) {
+    console.error(`Error deleting note with unknown id: ${params.id}`)
+    return NextResponse.error()
+  }
+
+  try {
+    await prisma.$transaction(async (tx) => {
+      await tx.notesOnTraits.deleteMany({
+        where: {
+          note_id: noteId
+        }
+      })
+
+      await tx.note.delete({
+        where: {
+          id: noteId
+        }
+      })
+    })
+  } catch (e) {
+    console.error(`Error deleting note:\n${JSON.stringify(e)}`)
+    return NextResponse.error()
+  }
+
+  return new NextResponse()
+}
