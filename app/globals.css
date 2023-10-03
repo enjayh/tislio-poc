@@ -60,6 +60,10 @@ button:hover {
   @apply bg-gray-200 text-gray-900;
 }
 
+.btn-center {
+  @apply block mx-auto my-5;
+}
+
 /* form styles */
 form {
   @apply py-4 px-7 bg-primary bg-opacity-5 rounded-md block mx-auto min-w-fit w-1/4 mb-4;
@@ -114,9 +118,6 @@ form>a {
 }
 
 /* home page styles */
-.btn-signup {
-  @apply block mx-auto my-5;
-}
 
 .icon-home {
   @apply block mx-auto items-center my-14;

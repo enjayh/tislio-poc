@@ -5,7 +5,7 @@ export default function NotFound() {
     <main className="text-center">
       <h2 className="text-3xl">Problem!</h2>
       <p>Can&apos;t find the page you were looking for.</p>
-      <p>Go back to <Link href="/">Home</Link></p>
+      <p>Go back to <Link href="/dashboard">Home</Link></p>
     </main>
   )
 }

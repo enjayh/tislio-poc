@@ -1,6 +1,6 @@
-import Logo from '../components/Logo'
+import Logo from './Logo'
 
-export default function AuthNav() {
+export default function SimpleNav() {
   return (
     <nav>
       <Logo />

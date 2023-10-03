@@ -1,7 +1,8 @@
 'use client'
- 
+
 import { useEffect } from 'react'
- 
+import SimpleNav from './components/SimpleNav'
+
 export default function Error({
   error,
   reset,
@@ -10,21 +11,21 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
     console.error(error)
   }, [error])
- 
+
   return (
     <div>
-      <h2>Something went wrong!</h2>
-      <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
-        Try again
-      </button>
+      <SimpleNav />
+      <main>
+        <h2 className="text-center">Something went wrong!</h2>
+        <button
+          className="btn-primary btn-center"
+          onClick={() => reset()}
+        >
+          Try again
+        </button>
+      </main>
     </div>
   )
 }

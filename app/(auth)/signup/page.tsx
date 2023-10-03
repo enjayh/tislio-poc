@@ -4,7 +4,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import Link from 'next/link'
-import AuthNav from '../AuthNav'
+import SimpleNav from '../../components/SimpleNav'
 import { NewAccount } from '@/app/utils/types'
 
 export default function SignUp() {
@@ -57,7 +57,7 @@ export default function SignUp() {
 
   return (
     <>
-      <AuthNav />
+      <SimpleNav />
       <main>
         <h2 className="text-center">Sign up</h2>
         <form onSubmit={handleSubmit}>
