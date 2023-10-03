@@ -5,6 +5,7 @@ import { useState } from 'react'
 import SelectableTagList from '../SelectableTagList'
 import { NewNote, SelectableTag, SelectableTrait, Tag, Trait } from '@/app/utils/types'
 import SelectableTraitList from '../SelectableTraitList'
+import { isValidTraitList } from '@/app/utils/general-utils'
 
 export default function CreateNoteForm({ tags, traits }: { tags: Tag[], traits: Trait[] }) {
   const selectableTags: SelectableTag[] = tags.map(tag => ({
@@ -27,6 +28,7 @@ export default function CreateNoteForm({ tags, traits }: { tags: Tag[], traits: 
   const [completed, setCompleted] = useState(false)
   const [selectableTagList, setSelectableTagList] = useState(selectableTags)
   const [selectableTraitList, setSelectableTraitList] = useState(selectableTraits)
+  const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const handleCompletedChange = async () => {
@@ -35,6 +37,13 @@ export default function CreateNoteForm({ tags, traits }: { tags: Tag[], traits: 
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    setError('')
+
+    if (!isValidTraitList(selectableTraitList)) {
+      setError('One or more trait values don\'t match the trait type')
+      return
+    }
 
     setIsLoading(true)
 
@@ -61,30 +70,35 @@ export default function CreateNoteForm({ tags, traits }: { tags: Tag[], traits: 
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-1/2">
-      <span>Body:</span>
-      <textarea
-        required
-        onChange={(e) => setBody(e.target.value)}
-        value={body}
-      />
-      <span>Completed:</span>
-      <input
-        type="checkbox"
-        onChange={handleCompletedChange}
-        checked={completed}
-      />
-      <span>Tags:</span>
-      <SelectableTagList tagList={selectableTagList} setTagList={setSelectableTagList} />
-      <span>Traits:</span>
-      <SelectableTraitList traitList={selectableTraitList} setTraitList={setSelectableTraitList} />
-      <button
-        className="btn-primary"
-        disabled={isLoading}
-      >
-        {isLoading && <span>Adding...</span>}
-        {!isLoading && <span>Add Note</span>}
-      </button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit} className="w-1/2">
+        <span>Body:</span>
+        <textarea
+          required
+          onChange={(e) => setBody(e.target.value)}
+          value={body}
+        />
+        <span>Completed:</span>
+        <input
+          type="checkbox"
+          onChange={handleCompletedChange}
+          checked={completed}
+        />
+        <span>Tags:</span>
+        <SelectableTagList tagList={selectableTagList} setTagList={setSelectableTagList} />
+        <span>Traits:</span>
+        <SelectableTraitList traitList={selectableTraitList} setTraitList={setSelectableTraitList} />
+        <button
+          className="btn-primary"
+          disabled={isLoading}
+        >
+          {isLoading && <span>Adding...</span>}
+          {!isLoading && <span>Add Note</span>}
+        </button>
+      </form>
+      {error && (
+        <div className="error">{error}</div>
+      )}
+    </>
   )
 }
