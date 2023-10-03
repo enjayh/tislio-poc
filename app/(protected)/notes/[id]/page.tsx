@@ -46,7 +46,7 @@ export default async function Note({ params }: { params: { id: string } }) {
     <>
       <NavBar />
       <main>
-        <h2 className="text-primary text-center">Note</h2>
+        <h2 className="text-header text-center">Note</h2>
         {note && (
           <>
             <DeleteNoteButton noteId={note.id} />

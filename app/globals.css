@@ -10,7 +10,7 @@ body {
 
 h1,
 h2 {
-  @apply font-bold text-primary text-lg;
+  @apply font-bold text-header text-lg;
 }
 
 main {
@@ -89,18 +89,31 @@ form>a {
 }
 
 /* item styles */
-.item-pill {
-  @apply flex bg-secondary w-fit rounded-3xl text-white px-3 py-1 my-3 items-center;
+.pill {
+  @apply flex w-fit rounded-3xl px-3 py-1 my-3 items-center;
 }
 
-.item-pill-unselected {
-  @apply flex bg-black w-fit rounded-3xl text-white px-3 py-1 my-3 items-center;
+.pill-tag {
+  @apply bg-tag text-tag_contrast;
 }
 
-.info-pill {
-  @apply flex bg-primary_light w-fit rounded-3xl text-white px-3 py-1 mx-10 my-3 items-center;
+.pill-trait {
+  @apply bg-trait text-trait_contrast;
 }
 
+.pill-note {
+  @apply bg-note text-note_contrast;
+}
+
+.pill-unselected {
+  @apply bg-unselected text-unselected_contrast;
+}
+
+.pill-info {
+  @apply flex w-fit rounded-3xl px-3 py-1 mx-10 my-3 items-center bg-secondary text-secondary_contrast;
+}
+
+/* home page styles */
 .btn-signup {
   @apply block mx-auto my-5;
 }

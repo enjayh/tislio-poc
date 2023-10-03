@@ -13,7 +13,7 @@ export default async function CreateNote() {
     <>
       <NavBar />
       <main>
-        <h2 className="text-primary text-center">Add a New Note</h2>
+        <h2 className="text-header text-center">Add a New Note</h2>
         <CreateNoteForm tags={tags} traits={traits} />
       </main>
     </>

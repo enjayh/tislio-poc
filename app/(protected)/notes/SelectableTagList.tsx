@@ -27,7 +27,7 @@ export default function SelectableTagList({ tagList, setTagList }: { tagList: Se
       {tagList.map((tag: SelectableTag) => (
         <span
           key={tag.id}
-          className={tag.selected ? "item-pill" : "item-pill-unselected"}
+          className={tag.selected ? "pill pill-tag" : "pill pill-unselected"}
           onClick={() => handleClick(tag.id)}
         >
           {tag.name} | {String(tag.selected)}

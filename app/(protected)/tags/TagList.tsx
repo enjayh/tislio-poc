@@ -20,7 +20,7 @@ export default async function TagList() {
   return (
     <>
       {tags.map((tag: Tag) => (
-        <div key={tag.id} className="item-pill">
+        <div key={tag.id} className="pill pill-tag">
           <p>{tag.name}</p>
         </div>
       ))}

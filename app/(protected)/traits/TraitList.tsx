@@ -16,7 +16,7 @@ export default async function TraitList() {
   return (
     <>
       {traits.map((trait: Trait) => (
-        <div key={trait.id} className="item-pill">
+        <div key={trait.id} className="pill pill-trait">
           <p>{trait.name} | {trait.type}</p>
         </div>
       ))}

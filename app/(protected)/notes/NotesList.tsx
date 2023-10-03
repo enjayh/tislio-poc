@@ -37,7 +37,7 @@ export default async function NoteList() {
   return (
     <>
       {notes.map((note: Note) => (
-        <div key={note.id} className="item-pill">
+        <div key={note.id} className="pill pill-note">
           {note.completed && (<TiTick />)}
           <Link href={'/notes/' + note.id}>
             <span>{note.body}</span>

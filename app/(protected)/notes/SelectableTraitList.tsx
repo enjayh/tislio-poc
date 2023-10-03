@@ -1,7 +1,7 @@
 'use client'
 
-import { SelectableTrait, Trait } from "@/app/utils/types";
-import { Dispatch, SetStateAction } from "react";
+import { SelectableTrait, Trait } from '@/app/utils/types'
+import { Dispatch, SetStateAction } from 'react'
 
 export default function SelectableTraitList({ traitList, setTraitList }: { traitList: SelectableTrait[], setTraitList: Dispatch<SetStateAction<SelectableTrait[]>> }) {
   const onClick = (id: number) => {
@@ -49,7 +49,7 @@ export default function SelectableTraitList({ traitList, setTraitList }: { trait
       {traitList.map((trait) => (
         <div key={trait.id}>
           <span
-            className={trait.selected ? "item-pill" : "item-pill-unselected"}
+            className={trait.selected ? "pill pill-trait" : "pill pill-unselected"}
             onClick={() => onClick(trait.id)}
           >
             {trait.name} | {trait.type}

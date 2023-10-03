@@ -85,8 +85,8 @@ export default function UpdateNoteForm({ note, tags, traits }: { note: Note, tag
           onChange={handleCompletedChange}
           checked={completed}
         />
-        <div className="info-pill">Created: {new Date(note.created_at).toLocaleString()}</div>
-        <div className="info-pill">Updated: {note.updated_at ? new Date(note.updated_at).toLocaleString() : 'Never'}</div>
+        <div className="pill-info">Created: {new Date(note.created_at).toLocaleString()}</div>
+        <div className="pill-info">Updated: {note.updated_at ? new Date(note.updated_at).toLocaleString() : 'Never'}</div>
         <span>Tags:</span>
         <SelectableTagList tagList={selectableTagList} setTagList={setSelectableTagList} />
         <span>Traits:</span>
