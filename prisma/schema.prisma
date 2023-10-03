@@ -21,14 +21,15 @@ model Account {
 }
 
 model Note {
-  id         Int      @id @default(autoincrement())
+  id         Int             @id @default(autoincrement())
   body       String
   completed  Boolean
-  account    Account  @relation(fields: [account_id], references: [id])
+  account    Account         @relation(fields: [account_id], references: [id])
   account_id Int
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  created_at DateTime        @default(now())
+  updated_at DateTime        @updatedAt
   tags       Tag[]
+  traits     NotesOnTraits[]
 }
 
 model Tag {
@@ -40,9 +41,20 @@ model Tag {
 }
 
 model Trait {
-  id         Int     @id @default(autoincrement())
+  id         Int             @id @default(autoincrement())
   name       String
   type       String
-  account    Account @relation(fields: [account_id], references: [id])
+  account    Account         @relation(fields: [account_id], references: [id])
   account_id Int
+  notes      NotesOnTraits[]
+}
+
+model NotesOnTraits {
+  note     Note   @relation(fields: [note_id], references: [id])
+  note_id  Int
+  trait    Trait  @relation(fields: [trait_id], references: [id])
+  trait_id Int
+  value    String
+
+  @@id([note_id, trait_id])
 }

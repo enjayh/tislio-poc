@@ -3,7 +3,7 @@ export type NewAccount = {
 }
 
 export type NewTag = {
-  name: string,
+  name: string
 }
 
 export type Tag = {
@@ -19,7 +19,7 @@ export type SelectableTag = {
 
 export type NewTrait = {
   name: string,
-  type: string,
+  type: string
 }
 
 export type Trait = {
@@ -28,25 +28,44 @@ export type Trait = {
   type: string
 }
 
+export type TraitWithValue = {
+  note_id: number,
+  trait_id: number,
+  value: string,
+  trait: Trait
+}
+
+export type SelectableTrait = {
+  id: number,
+  name: string,
+  type: string,
+  value: string,
+  selected: boolean,
+  existing: boolean
+}
+
 export type NewNote = {
   body: string,
   completed: boolean,
   tags: SelectableTag[],
+  traits: SelectableTrait[]
 }
 
 export type Note = {
-  id: number;
-  body: string;
-  completed: boolean;
-  account_id: number;
-  created_at: Date;
-  updated_at: Date;
-  tags: Tag[]
+  id: number,
+  body: string,
+  completed: boolean,
+  account_id: number,
+  created_at: Date,
+  updated_at: Date,
+  tags: Tag[],
+  traits: TraitWithValue[]
 }
 
 export type UpdateNote = {
-  id: number;
-  body: string;
-  completed: boolean;
-  tags: SelectableTag[]
+  id: number,
+  body: string,
+  completed: boolean,
+  tags: SelectableTag[],
+  traits: SelectableTrait[]
 }
