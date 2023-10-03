@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Note, Tag, SelectableTag, UpdateNote, Trait, SelectableTrait } from '@/app/utils/types'
 import SelectableTagList from '../SelectableTagList'
 import SelectableTraitList from '../SelectableTraitList'
+import { isValidTraitList } from '@/app/utils/general-utils'
 
 export default function UpdateNoteForm({ note, tags, traits }: { note: Note, tags: Tag[], traits: Trait[] }) {
   const router = useRouter()
@@ -27,6 +28,7 @@ export default function UpdateNoteForm({ note, tags, traits }: { note: Note, tag
   const [completed, setCompleted] = useState(note.completed)
   const [selectableTagList, setSelectableTagList] = useState(selectableTags)
   const [selectableTraitList, setSelectableTraitList] = useState(selectableTraits)
+  const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const handleCompletedChange = async () => {
@@ -35,6 +37,13 @@ export default function UpdateNoteForm({ note, tags, traits }: { note: Note, tag
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    setError('')
+
+    if (!isValidTraitList(selectableTraitList)) {
+      setError('One or more trait values don\'t match the trait type')
+      return
+    }
 
     setIsLoading(true)
 
@@ -62,32 +71,37 @@ export default function UpdateNoteForm({ note, tags, traits }: { note: Note, tag
   }
 
   return (
-    <form onSubmit={handleSubmit} className="w-1/2">
-      <span>Body:</span>
-      <textarea
-        required
-        onChange={(e) => setBody(e.target.value)}
-        value={body}
-      />
-      <span>Completed:</span>
-      <input
-        type="checkbox"
-        onChange={handleCompletedChange}
-        checked={completed}
-      />
-      <div className="info-pill">Created: {new Date(note.created_at).toLocaleString()}</div>
-      <div className="info-pill">Updated: {note.updated_at ? new Date(note.updated_at).toLocaleString() : 'Never'}</div>
-      <span>Tags:</span>
-      <SelectableTagList tagList={selectableTagList} setTagList={setSelectableTagList} />
-      <span>Traits:</span>
-      <SelectableTraitList traitList={selectableTraitList} setTraitList={setSelectableTraitList} />
-      <button
-        className="btn-primary"
-        disabled={isLoading}
-      >
-        {isLoading && <span>Updating...</span>}
-        {!isLoading && <span>Update Note</span>}
-      </button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit} className="w-1/2">
+        <span>Body:</span>
+        <textarea
+          required
+          onChange={(e) => setBody(e.target.value)}
+          value={body}
+        />
+        <span>Completed:</span>
+        <input
+          type="checkbox"
+          onChange={handleCompletedChange}
+          checked={completed}
+        />
+        <div className="info-pill">Created: {new Date(note.created_at).toLocaleString()}</div>
+        <div className="info-pill">Updated: {note.updated_at ? new Date(note.updated_at).toLocaleString() : 'Never'}</div>
+        <span>Tags:</span>
+        <SelectableTagList tagList={selectableTagList} setTagList={setSelectableTagList} />
+        <span>Traits:</span>
+        <SelectableTraitList traitList={selectableTraitList} setTraitList={setSelectableTraitList} />
+        <button
+          className="btn-primary"
+          disabled={isLoading}
+        >
+          {isLoading && <span>Updating...</span>}
+          {!isLoading && <span>Update Note</span>}
+        </button>
+      </form>
+      {error && (
+        <div className="error">{error}</div>
+      )}
+    </>
   )
 }
