@@ -18,7 +18,7 @@ export default async function TraitList() {
     <>
       {traits.map((trait: Trait) => (
         <div key={trait.id} className="pill pill-trait">
-          {getTypeIcon(trait.type)}
+          {getTypeIcon(trait.type, 'icon-pill')}
           <p>{trait.name}</p>
         </div>
       ))}

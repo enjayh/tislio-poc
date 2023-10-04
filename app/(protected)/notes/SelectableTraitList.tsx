@@ -53,7 +53,7 @@ export default function SelectableTraitList({ traitList, setTraitList }: { trait
             className={trait.selected ? "pill pill-trait pill-border" : "pill pill-unselected pill-border-unselected"}
             onClick={() => onClick(trait.id)}
           >
-            {getTypeIcon(trait.type)}
+            {getTypeIcon(trait.type, 'icon-pill')}
             <p>{trait.name}</p>
 
           </span>

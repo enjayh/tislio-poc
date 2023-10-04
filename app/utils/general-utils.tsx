@@ -31,16 +31,16 @@ export function isValidTraitList(selectableTraitList: SelectableTrait[]) {
   return isValid
 }
 
-export function getTypeIcon(type: string) {
+export function getTypeIcon(type: string, classNames: string) {
   switch (type) {
     case 'TEXT':
-      return <TiDocumentText className="icon-pill" />
+      return <TiDocumentText className={classNames} />
     case 'FLOAT':
-      return <TiSortNumerically className="icon-pill" />
+      return <TiSortNumerically className={classNames} />
     case 'DATE':
-      return <TiCalendar className="icon-pill" />
+      return <TiCalendar className={classNames} />
     case 'BOOL':
-      return <TiInputCheckedOutline className="icon-pill" />
+      return <TiInputCheckedOutline className={classNames} />
   }
   throw new Error(`Invalid trait type: ${type}`)
 }
