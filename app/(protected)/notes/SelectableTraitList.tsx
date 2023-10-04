@@ -68,7 +68,7 @@ export default function SelectableTraitList({ traitList, setTraitList }: { trait
           {trait.selected && trait.type === 'BOOL' &&
             <input
               type="checkbox"
-              onChange={(e) => onChange(trait.id, e.target.value)}
+              onChange={(e) => onChange(trait.id, String(e.target.checked))}
               checked={trait.value === 'true'}
             />
           }
