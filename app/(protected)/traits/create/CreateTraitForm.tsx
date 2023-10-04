@@ -3,6 +3,7 @@
 import { NewTrait } from '@/app/utils/types'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import TraitTypeSelector from './TraitTypeSelector'
 
 export default function CreateTraitForm() {
   const router = useRouter()
@@ -45,17 +46,7 @@ export default function CreateTraitForm() {
         value={name}
       />
       <span>Type:</span>
-      <select
-        required
-        onChange={(e) => setType(e.target.value)}
-        value={type}
-      >
-        <option value="TEXT">TEXT</option>
-        <option value="INT">INT</option>
-        <option value="FLOAT">FLOAT</option>
-        <option value="DATE">DATE</option>
-        <option value="BOOL">BOOL</option>
-      </select>
+      <TraitTypeSelector type={type} setType={setType} />
       <button
         className="btn-primary"
         disabled={isLoading}

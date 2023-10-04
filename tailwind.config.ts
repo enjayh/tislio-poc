@@ -10,10 +10,17 @@ const config: Config = {
     extend: {
       colors: {
         primary: '#ffae00',
-        secondary: '#5e00ff',
-        tertiary: '#ff00a2',
-        quaternary: '#a2ff00',
-        primary_light: '#ffbe33'
+        header: '#3c3c3c',
+        secondary: '#ffd478',
+        secondary_contrast: '#393939',
+        unselected: '#8f8f8f',
+        unselected_contrast: '#ffffff',
+        tag: '#79e5e0',
+        tag_contrast: '#0c2191',
+        trait: '#8fe596',
+        trait_contrast: '#146a2d',
+        note: '#f49dce',
+        note_contrast: '#6a1463'
       }
     }
   },

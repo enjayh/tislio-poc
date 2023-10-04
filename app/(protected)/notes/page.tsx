@@ -13,7 +13,6 @@ export default function Notes() {
           </Link>
         </nav>
         <h2>Notes</h2>
-        <div>List of notes here.</div>
         <NoteList />
       </main>
     </>

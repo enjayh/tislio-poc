@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import Link from 'next/link'
-import AuthNav from '../AuthNav'
+import SimpleNav from '../../components/SimpleNav'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -33,7 +33,7 @@ export default function Login() {
 
   return (
     <>
-      <AuthNav />
+      <SimpleNav />
       <main>
         <h2 className="text-center">Log In</h2>
         <form onSubmit={handleSubmit}>
@@ -53,7 +53,11 @@ export default function Login() {
           />
           <button className="btn-primary">Submit</button>
         </form>
-        <div className="text-center"><Link href="/signup">Don&apos;t have an account? Sign up here.</Link></div>
+        <div className="text-center">
+          <Link href="/signup">
+            Don&apos;t have an account? <u>Sign up here.</u>
+          </Link>
+        </div>
         {error && (
           <div className="error">{error}</div>
         )}

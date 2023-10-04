@@ -25,13 +25,16 @@ export default function SelectableTagList({ tagList, setTagList }: { tagList: Se
   return (
     <>
       {tagList.map((tag: SelectableTag) => (
-        <span
+        <button
           key={tag.id}
-          className={tag.selected ? "item-pill" : "item-pill-unselected"}
-          onClick={() => handleClick(tag.id)}
+          className={tag.selected ? "pill pill-tag pill-border" : "pill pill-unselected pill-border-unselected"}
+          onClick={(e) => {
+            e.preventDefault()
+            handleClick(tag.id)
+          }}
         >
-          {tag.name} | {String(tag.selected)}
-        </span>
+          {tag.name}
+        </button>
       ))}
     </>
   )

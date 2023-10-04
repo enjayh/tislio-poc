@@ -6,7 +6,7 @@ export default function CreateTag() {
     <>
       <NavBar />
       <main>
-        <h2 className="text-primary text-center">Add a New Tag</h2>
+        <h2 className="text-header text-center">Add a New Tag</h2>
         <CreateTagForm />
       </main>
     </>

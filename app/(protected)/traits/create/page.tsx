@@ -6,7 +6,7 @@ export default function CreateTrait() {
     <>
       <NavBar />
       <main>
-        <h2 className="text-primary text-center">Add a New Trait</h2>
+        <h2 className="text-header text-center">Add a New Trait</h2>
         <CreateTraitForm />
       </main>
     </>

@@ -11,7 +11,7 @@ export default function SignUpButton() {
 
   return (
     <button
-      className="btn-primary btn-signup"
+      className="btn-primary btn-center"
       onClick={handleClick}
     >
       Sign Up Here!

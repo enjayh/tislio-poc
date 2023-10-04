@@ -1,5 +1,9 @@
 # Tislio
 
+Tislio is a web application for note-taking.
+- Notes can have 'Tags' assigned to them for categorization.
+- Notes can also have 'Traits' assigned to them for additional metadata.
+
 ## Development environment
 - Node.js 20.7.0
 - Git 2.24.0 64-bit

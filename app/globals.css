@@ -10,7 +10,7 @@ body {
 
 h1,
 h2 {
-  @apply font-bold text-primary text-lg;
+  @apply font-bold text-header text-lg;
 }
 
 main {
@@ -60,6 +60,10 @@ button:hover {
   @apply bg-gray-200 text-gray-900;
 }
 
+.btn-center {
+  @apply block mx-auto my-5;
+}
+
 /* form styles */
 form {
   @apply py-4 px-7 bg-primary bg-opacity-5 rounded-md block mx-auto min-w-fit w-1/4 mb-4;
@@ -89,21 +93,39 @@ form>a {
 }
 
 /* item styles */
-.item-pill {
-  @apply flex bg-secondary w-fit rounded-3xl text-white px-3 py-1 my-3 items-center;
+.pill {
+  @apply flex w-fit rounded-3xl px-3 py-1 my-3 items-center;
 }
 
-.item-pill-unselected {
-  @apply flex bg-black w-fit rounded-3xl text-white px-3 py-1 my-3 items-center;
+.pill-tag {
+  @apply bg-tag text-tag_contrast;
 }
 
-.info-pill {
-  @apply flex bg-primary_light w-fit rounded-3xl text-white px-3 py-1 mx-10 my-3 items-center;
+.pill-trait {
+  @apply bg-trait text-trait_contrast;
 }
 
-.btn-signup {
-  @apply block mx-auto my-5;
+.pill-note {
+  @apply bg-note text-note_contrast;
 }
+
+.pill-unselected {
+  @apply bg-unselected text-unselected_contrast;
+}
+
+.pill-info {
+  @apply flex w-fit rounded-3xl px-3 py-1 mx-10 my-3 items-center bg-secondary text-secondary_contrast;
+}
+
+.pill-border {
+  @apply border-2 border-slate-500
+}
+
+.pill-border-unselected {
+  @apply border-2
+}
+
+/* home page styles */
 
 .icon-home {
   @apply block mx-auto items-center my-14;
@@ -118,4 +140,29 @@ form>a {
   @apply border-2 rounded-xl p-4;
   width: calc(100% - 4rem / 3);
   border-color: rgb(229 231 235);
+}
+
+/* icon styles */
+.icon-pill {
+  @apply scale-150;
+}
+
+.icon-btn {
+  @apply mx-auto items-center my-4;
+  transform: scale(3);
+}
+
+/* 4 column trait type selector */
+.four-column {
+  @apply flex my-4 gap-x-8;
+}
+
+.four-column>* {
+  @apply border-2 rounded-xl p-4;
+  width: calc(100% - 6rem / 4);
+  border-color: rgb(229 231 235);
+}
+
+.btn-trait-selected {
+  @apply border-2 border-slate-500
 }

@@ -72,11 +72,11 @@ export default function CreateNoteForm({ tags, traits }: { tags: Tag[], traits: 
   return (
     <>
       <form onSubmit={handleSubmit} className="w-1/2">
-        <span>Body:</span>
         <textarea
           required
           onChange={(e) => setBody(e.target.value)}
           value={body}
+          rows={5}
         />
         <span>Completed:</span>
         <input
