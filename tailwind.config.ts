@@ -10,16 +10,16 @@ const config: Config = {
     extend: {
       colors: {
         primary: '#ffae00',
-        header: '#703611',
+        header: '#000000',
         secondary: '#ffd478',
         secondary_contrast: '#393939',
-        unselected: '#393939',
+        unselected: '#5f5f5f',
         unselected_contrast: '#ffffff',
         tag: '#79e5e0',
         tag_contrast: '#0c2191',
-        trait: '#79e582',
+        trait: '#8fe596',
         trait_contrast: '#146a2d',
-        note: '#e579b6',
+        note: '#f49dce',
         note_contrast: '#6a1463'
       }
     }
