@@ -6,6 +6,7 @@ import { Note, Tag, SelectableTag, UpdateNote, Trait, SelectableTrait } from '@/
 import SelectableTagList from '../SelectableTagList'
 import SelectableTraitList from '../SelectableTraitList'
 import { isValidTraitList } from '@/app/utils/general-utils'
+import Switch from 'react-switch'
 
 export default function UpdateNoteForm({ note, tags, traits }: { note: Note, tags: Tag[], traits: Trait[] }) {
   const router = useRouter()
@@ -19,7 +20,7 @@ export default function UpdateNoteForm({ note, tags, traits }: { note: Note, tag
     id: trait.id,
     name: trait.name,
     type: trait.type,
-    value: note.traits.find(noteTrait => noteTrait.trait_id === trait.id)?.value || '',
+    value: note.traits.find(noteTrait => noteTrait.trait_id === trait.id)?.value || (trait.type === 'BOOL' ? 'false' : trait.type === 'DATE' ? new Date().toISOString() : ''),
     selected: note.traits.filter(noteTrait => noteTrait.trait_id === trait.id).length > 0,
     existing: note.traits.filter(noteTrait => noteTrait.trait_id === trait.id).length > 0
   }))
@@ -79,12 +80,14 @@ export default function UpdateNoteForm({ note, tags, traits }: { note: Note, tag
           value={body}
           rows={5}
         />
-        <span>Completed:</span>
-        <input
-          type="checkbox"
-          onChange={handleCompletedChange}
-          checked={completed}
-        />
+        <div className="text-center">
+          <span className="align-middle">Completed:</span>
+          <Switch
+            onChange={handleCompletedChange}
+            checked={completed}
+            className="switch-completed"
+          />
+        </div>
         <span>Tags:</span>
         <SelectableTagList tagList={selectableTagList} setTagList={setSelectableTagList} />
         <span>Traits:</span>

@@ -3,6 +3,9 @@
 import { getTypeIcon } from '@/app/utils/general-utils'
 import { SelectableTrait, Trait } from '@/app/utils/types'
 import { Dispatch, SetStateAction } from 'react'
+import DatePicker from 'react-datepicker'
+
+import 'react-datepicker/dist/react-datepicker.css'
 
 export default function SelectableTraitList({ traitList, setTraitList }: { traitList: SelectableTrait[], setTraitList: Dispatch<SetStateAction<SelectableTrait[]>> }) {
   const onClick = (id: number) => {
@@ -59,7 +62,7 @@ export default function SelectableTraitList({ traitList, setTraitList }: { trait
             {getTypeIcon(trait.type, 'icon-pill')}
             <p>{trait.name}</p>
           </button>
-          {trait.selected && trait.type !== 'BOOL' &&
+          {trait.selected && trait.type !== 'BOOL' && trait.type !== 'DATE' &&
             <input
               onChange={(e) => onChange(trait.id, e.target.value)}
               value={trait.value}
@@ -71,6 +74,15 @@ export default function SelectableTraitList({ traitList, setTraitList }: { trait
               onChange={(e) => onChange(trait.id, String(e.target.checked))}
               checked={trait.value === 'true'}
             />
+          }
+          {trait.selected && trait.type === 'DATE' &&
+            <div className="text-center">
+              <DatePicker
+                className="text-center"
+                onChange={(date) => date && onChange(trait.id, date.toISOString())}
+                selected={new Date(trait.value)}
+              />
+            </div>
           }
         </div>
       ))}
