@@ -117,6 +117,14 @@ form>a {
   @apply flex w-fit rounded-3xl px-3 py-1 mx-10 my-3 items-center bg-secondary text-secondary_contrast;
 }
 
+.pill-border {
+  @apply border-2 border-slate-500
+}
+
+.pill-border-unselected {
+  @apply border-2
+}
+
 /* home page styles */
 
 .icon-home {
@@ -132,4 +140,9 @@ form>a {
   @apply border-2 rounded-xl p-4;
   width: calc(100% - 4rem / 3);
   border-color: rgb(229 231 235);
+}
+
+/* icon styles */
+.icon-pill {
+  @apply mr-2 scale-150;
 }

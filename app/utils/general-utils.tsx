@@ -1,4 +1,5 @@
-import { SelectableTrait } from "./types"
+import { SelectableTrait } from './types'
+import { TiCalendar, TiDocumentText, TiInputCheckedOutline, TiSortNumerically } from 'react-icons/ti'
 
 export function isValidTraitList(selectableTraitList: SelectableTrait[]) {
   let isValid = true
@@ -7,11 +8,6 @@ export function isValidTraitList(selectableTraitList: SelectableTrait[]) {
     if (trait.selected) {
       switch (trait.type) {
         case 'TEXT':
-          break
-        case 'INT':
-          if (isNaN(parseInt(trait.value))) {
-            isValid = false
-          }
           break
         case 'FLOAT':
           if (isNaN(parseFloat(trait.value))) {
@@ -33,4 +29,18 @@ export function isValidTraitList(selectableTraitList: SelectableTrait[]) {
   })
 
   return isValid
+}
+
+export function getTypeIcon(type: string) {
+  switch (type) {
+    case 'TEXT':
+      return <TiDocumentText className="icon-pill" />
+    case 'FLOAT':
+      return <TiSortNumerically className="icon-pill" />
+    case 'DATE':
+      return <TiCalendar className="icon-pill" />
+    case 'BOOL':
+      return <TiInputCheckedOutline className="icon-pill" />
+  }
+  throw new Error(`Invalid trait type: ${type}`)
 }

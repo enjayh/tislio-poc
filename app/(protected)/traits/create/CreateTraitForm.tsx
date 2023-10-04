@@ -51,7 +51,6 @@ export default function CreateTraitForm() {
         value={type}
       >
         <option value="TEXT">TEXT</option>
-        <option value="INT">INT</option>
         <option value="FLOAT">FLOAT</option>
         <option value="DATE">DATE</option>
         <option value="BOOL">BOOL</option>

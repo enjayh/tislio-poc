@@ -1,5 +1,6 @@
 'use client'
 
+import { getTypeIcon } from '@/app/utils/general-utils'
 import { SelectableTrait, Trait } from '@/app/utils/types'
 import { Dispatch, SetStateAction } from 'react'
 
@@ -49,10 +50,11 @@ export default function SelectableTraitList({ traitList, setTraitList }: { trait
       {traitList.map((trait) => (
         <div key={trait.id}>
           <span
-            className={trait.selected ? "pill pill-trait" : "pill pill-unselected"}
+            className={trait.selected ? "pill pill-trait pill-border" : "pill pill-unselected pill-border-unselected"}
             onClick={() => onClick(trait.id)}
           >
-            {trait.name} | {trait.type}
+            {getTypeIcon(trait.type)}
+            <p>{trait.name}</p>
 
           </span>
           {trait.selected &&

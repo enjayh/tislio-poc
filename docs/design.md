@@ -54,7 +54,7 @@ The email address of the Account is used to associate with the current email in 
 | - | - |
 | id | pk |
 | name | text |
-| type | text (enum: TEXT/INT/FLOAT/DATE/BOOL) |
+| type | text (enum: TEXT/FLOAT/DATE/BOOL) |
 | account_id | fk |
 
 ### Note
