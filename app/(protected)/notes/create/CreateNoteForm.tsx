@@ -6,6 +6,7 @@ import SelectableTagList from '../SelectableTagList'
 import { NewNote, SelectableTag, SelectableTrait, Tag, Trait } from '@/app/utils/types'
 import SelectableTraitList from '../SelectableTraitList'
 import { isValidTraitList } from '@/app/utils/general-utils'
+import Switch from 'react-switch'
 
 export default function CreateNoteForm({ tags, traits }: { tags: Tag[], traits: Trait[] }) {
   const selectableTags: SelectableTag[] = tags.map(tag => ({
@@ -78,12 +79,14 @@ export default function CreateNoteForm({ tags, traits }: { tags: Tag[], traits: 
           value={body}
           rows={5}
         />
-        <span>Completed:</span>
-        <input
-          type="checkbox"
-          onChange={handleCompletedChange}
-          checked={completed}
-        />
+        <div className="text-center">
+          <span className="align-middle">Completed:</span>
+          <Switch
+            onChange={handleCompletedChange}
+            checked={completed}
+            className="switch-completed"
+          />
+        </div>
         <span>Tags:</span>
         <SelectableTagList tagList={selectableTagList} setTagList={setSelectableTagList} />
         <span>Traits:</span>
