@@ -37,7 +37,7 @@ export default async function NoteList() {
     <>
       {notes.length === 0 && (<div>Add some notes to have them show up here.</div>)}
       {notes.map((note: Note) => (
-        <NoteButton note={note} />
+        <NoteButton key={note.id} note={note} />
       ))
       }
     </>
