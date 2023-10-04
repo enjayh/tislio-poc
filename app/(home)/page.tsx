@@ -54,6 +54,7 @@ export default async function Home() {
           </div>
         </div>
         <SignUpButton />
+        <br />
         <div className="text-center">The the source code for this project can be found <u><Link href="https://github.com/enjayh/tislio">here on GitHub</Link></u>.</div>
       </main>
     </>

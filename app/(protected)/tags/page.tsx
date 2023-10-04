@@ -13,7 +13,6 @@ export default function Tags() {
           </Link>
         </nav>
         <h2>Tags</h2>
-        <div>List of tags here.</div>
         <TagList />
       </main>
     </>

@@ -16,11 +16,12 @@ export default async function TraitList() {
 
   return (
     <>
+      {traits.length === 0 && (<div>Add some traits to have them show up here.</div>)}
       {traits.map((trait: Trait) => (
-        <div key={trait.id} className="pill pill-trait">
+        <button key={trait.id} className="pill pill-trait">
           {getTypeIcon(trait.type, 'icon-pill')}
           <p>{trait.name}</p>
-        </div>
+        </button>
       ))}
     </>
   )

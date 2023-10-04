@@ -49,18 +49,27 @@ export default function SelectableTraitList({ traitList, setTraitList }: { trait
     <>
       {traitList.map((trait) => (
         <div key={trait.id}>
-          <span
+          <button
             className={trait.selected ? "pill pill-trait pill-border" : "pill pill-unselected pill-border-unselected"}
-            onClick={() => onClick(trait.id)}
+            onClick={(e) => {
+              e.preventDefault()
+              onClick(trait.id)
+            }}
           >
             {getTypeIcon(trait.type, 'icon-pill')}
             <p>{trait.name}</p>
-
-          </span>
-          {trait.selected &&
+          </button>
+          {trait.selected && trait.type !== 'BOOL' &&
             <input
               onChange={(e) => onChange(trait.id, e.target.value)}
               value={trait.value}
+            />
+          }
+          {trait.selected && trait.type === 'BOOL' &&
+            <input
+              type="checkbox"
+              onChange={(e) => onChange(trait.id, e.target.value)}
+              checked={trait.value === 'true'}
             />
           }
         </div>

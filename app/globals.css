@@ -144,7 +144,7 @@ form>a {
 
 /* icon styles */
 .icon-pill {
-  @apply mr-2 scale-150;
+  @apply scale-150;
 }
 
 .icon-btn {

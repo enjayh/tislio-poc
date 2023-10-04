@@ -19,10 +19,11 @@ export default async function TagList() {
 
   return (
     <>
+      {tags.length === 0 && (<div>Add some tags to have them show up here.</div>)}
       {tags.map((tag: Tag) => (
-        <div key={tag.id} className="pill pill-tag">
+        <button key={tag.id} className="pill pill-tag">
           <p>{tag.name}</p>
-        </div>
+        </button>
       ))}
     </>
   )

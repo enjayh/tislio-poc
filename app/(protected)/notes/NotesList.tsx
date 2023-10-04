@@ -1,8 +1,7 @@
 import { getAccountIdFromServerComponent } from '@/app/utils/SupabaseUtils';
-import { TiTick } from 'react-icons/ti'
-import Link from 'next/link';
 import prisma from '@/app/utils/prisma-utils';
 import { Note } from '@/app/utils/types';
+import NoteButton from './NoteButton';
 
 export const dynamic = 'force-dynamic'
 
@@ -36,14 +35,9 @@ export default async function NoteList() {
 
   return (
     <>
+      {notes.length === 0 && (<div>Add some notes to have them show up here.</div>)}
       {notes.map((note: Note) => (
-        <div key={note.id} className="pill pill-note">
-          {note.completed && (<TiTick />)}
-          <Link href={'/notes/' + note.id}>
-            <span>{note.body}</span>
-          </Link>
-        </div >
-
+        <NoteButton note={note} />
       ))
       }
     </>

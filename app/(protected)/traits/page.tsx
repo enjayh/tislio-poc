@@ -13,7 +13,6 @@ export default function Traits() {
           </Link>
         </nav>
         <h2>Traits</h2>
-        <div>List of traits here.</div>
         <TraitList />
       </main>
     </>
