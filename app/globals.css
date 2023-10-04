@@ -166,3 +166,8 @@ form>a {
 .btn-trait-selected {
   @apply border-2 border-slate-500
 }
+
+/* general */
+.center {
+  @apply block mx-auto items-center 
+}

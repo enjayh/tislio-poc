@@ -19,7 +19,7 @@ export default function UpdateNoteForm({ note, tags, traits }: { note: Note, tag
     id: trait.id,
     name: trait.name,
     type: trait.type,
-    value: note.traits.find(noteTrait => noteTrait.trait_id === trait.id)?.value || '',
+    value: note.traits.find(noteTrait => noteTrait.trait_id === trait.id)?.value || (trait.type === 'BOOL' ? 'false' : trait.type === 'DATE' ? new Date().toISOString() : ''),
     selected: note.traits.filter(noteTrait => noteTrait.trait_id === trait.id).length > 0,
     existing: note.traits.filter(noteTrait => noteTrait.trait_id === trait.id).length > 0
   }))

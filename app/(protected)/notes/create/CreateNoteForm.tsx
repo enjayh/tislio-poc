@@ -17,7 +17,7 @@ export default function CreateNoteForm({ tags, traits }: { tags: Tag[], traits: 
     id: trait.id,
     name: trait.name,
     type: trait.type,
-    value: trait.type === 'BOOL' ? 'false' : '',
+    value: trait.type === 'BOOL' ? 'false' : (trait.type === 'DATE' ? new Date().toISOString() : ''),
     selected: false,
     existing: false
   }))
