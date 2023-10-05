@@ -1,21 +1,12 @@
 import { getAccountIdFromServerComponent } from '@/app/utils/SupabaseUtils';
-import prisma from '@/app/utils/prisma-utils';
+import { getTags } from '@/app/utils/prisma-utils';
 import { Tag } from '@/app/utils/types';
 
 export const dynamic = 'force-dynamic'
 
 export default async function TagList() {
   const accountId = await getAccountIdFromServerComponent()
-
-  const tags: Tag[] = await prisma.tag.findMany({
-    where: {
-      account_id: accountId
-    },
-    select: {
-      id: true,
-      name: true
-    }
-  })
+  const tags: Tag[] = await getTags(accountId)
 
   return (
     <>
