@@ -69,3 +69,8 @@ export type UpdateNote = {
   tags: SelectableTag[],
   traits: SelectableTrait[]
 }
+
+export type TraitFilter = {
+  id: number,
+  value: string
+}
