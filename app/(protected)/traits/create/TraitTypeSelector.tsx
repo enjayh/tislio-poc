@@ -26,7 +26,7 @@ export default function TraitTypeSelector({ type, setType }: { type: string, set
         type={type}
         setType={setType}
         buttonType="BOOL"
-        buttonText="Toggle"
+        buttonText="Yes/No"
       />
     </div>
   )

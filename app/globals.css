@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 /* base styles */
+html {
+  @apply overflow-y-scroll;
+}
+
 body {
   background: #ebf0fa;
   @apply text-gray-500 m-8;
@@ -174,4 +178,13 @@ form>a {
 
 .switch-completed {
   @apply align-middle ml-2;
+}
+
+/* dashboard styles */
+.pill-inline {
+  @apply inline-block mx-1;
+}
+
+.pill-inline>* {
+  @apply inline-block;
 }
