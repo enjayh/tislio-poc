@@ -1,4 +1,4 @@
-import { getAccountIdFromServerComponent } from '@/app/utils/SupabaseUtils'
+import { getAccountIdFromServerComponent } from '@/app/utils/supabase-utils'
 import { getTypeIcon } from '@/app/utils/general-utils'
 import prisma from '@/app/utils/prisma-utils'
 import { Trait } from '@/app/utils/types'

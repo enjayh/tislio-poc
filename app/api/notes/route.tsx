@@ -1,4 +1,4 @@
-import { getAccountIdFromRoute } from '@/app/utils/SupabaseUtils'
+import { getAccountIdFromRoute } from '@/app/utils/supabase-utils'
 import { NextRequest, NextResponse } from 'next/server'
 import { NewNote, SelectableTag, SelectableTrait } from '@/app/utils/types'
 import prisma from '@/app/utils/prisma-utils'

@@ -1,4 +1,4 @@
-import { getAccountIdFromServerComponent } from '@/app/utils/SupabaseUtils'
+import { getAccountIdFromServerComponent } from '@/app/utils/supabase-utils'
 import UpdateNoteForm from './UpdateNoteForm'
 import NavBar from '@/app/components/NavBar'
 import { Note } from '@/app/utils/types'

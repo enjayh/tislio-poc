@@ -1,4 +1,4 @@
-import { getAccountIdFromServerComponent } from '@/app/utils/SupabaseUtils';
+import { getAccountIdFromServerComponent } from '@/app/utils/supabase-utils';
 import { getNotes } from '@/app/utils/prisma-utils';
 import { Note } from '@/app/utils/types';
 import NoteButton from './NoteButton';

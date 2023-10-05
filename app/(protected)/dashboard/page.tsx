@@ -1,6 +1,6 @@
 import NavBar from '@/app/components/NavBar'
 import DashboardPane from './DashboardPane'
-import { getAccountIdFromServerComponent } from '@/app/utils/SupabaseUtils'
+import { getAccountIdFromServerComponent } from '@/app/utils/supabase-utils'
 import { getNotes, getTags, getTraits } from '@/app/utils/prisma-utils'
 
 export default async function Dashboard() {

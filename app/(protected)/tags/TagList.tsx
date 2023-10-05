@@ -1,4 +1,4 @@
-import { getAccountIdFromServerComponent } from '@/app/utils/SupabaseUtils';
+import { getAccountIdFromServerComponent } from '@/app/utils/supabase-utils';
 import { getTags } from '@/app/utils/prisma-utils';
 import { Tag } from '@/app/utils/types';
 
