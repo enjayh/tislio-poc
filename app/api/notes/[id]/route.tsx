@@ -2,6 +2,7 @@ import { getAccountIdFromRoute } from '@/app/utils/supabase-utils'
 import prisma from '@/app/utils/prisma-utils'
 import { UpdateNote } from '@/app/utils/types'
 import { NextRequest, NextResponse } from 'next/server'
+import { Prisma } from '@prisma/client'
 
 export async function PUT(request: NextRequest) {
   const note: UpdateNote = await request.json()
@@ -37,7 +38,7 @@ export async function PUT(request: NextRequest) {
   const accountId = await getAccountIdFromRoute()
 
   try {
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       await tx.note.update({
         where: {
           id: note.id,
@@ -101,7 +102,7 @@ export async function DELETE(_: NextRequest, { params }: { params: { id: string 
   }
 
   try {
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
       await tx.notesOnTraits.deleteMany({
         where: {
           note_id: noteId
