@@ -56,7 +56,7 @@ export default function UpdateNoteForm({ note, tags, traits }: { note: Note, tag
       traits: selectableTraitList
     }
 
-    const res = await fetch('http://localhost:3000/api/notes/' + note.id, {
+    const res = await fetch(`${location.origin}/api/notes/${note.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedNote)

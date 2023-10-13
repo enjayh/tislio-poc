@@ -42,7 +42,7 @@ export default function SignUp() {
       email: email
     }
 
-    const res = await fetch('http://localhost:3000/api/accounts', {
+    const res = await fetch(`${location.origin}/api/accounts`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newAccount)

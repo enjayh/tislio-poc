@@ -22,7 +22,7 @@ export default function CreateTraitForm() {
       type
     }
 
-    const res = await fetch('http://localhost:3000/api/traits/', {
+    const res = await fetch(`${location.origin}/api/traits/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(trait)
