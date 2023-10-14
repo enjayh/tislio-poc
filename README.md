@@ -19,6 +19,9 @@ Tested using:
     * If this asks you to delete your database, don't accept as this will also delete Supabase-specific configuration. Use ```npx prisma migrate deploy``` to not damage your project in Supabase.
     * If you do accept, you will need to create a new Supabase project and set the values in the environment files again.
 
+## Deploying not on localhost
+Note: when deploying somewhere other than localhost, the new redirect URL must be added to the Supabase settings. In the ```Dashboard``` of you Supabase project -> ```Authentication``` -> ```URL Configuration``` add the new URL with the path to the API callback. For example: ```https://myhostname.com/api/auth/callback```.
+
 ## Docker
 If you've set up the development environment above, you can create a Docker image and run it locally. Note that this will copy your environment files into the image. Use only for development.
 
@@ -27,7 +30,7 @@ If you've set up the development environment above, you can create a Docker imag
 3. Run ```docker run -p 3000:3000 tislio-docker``` to create and run a container
 4. Browse to ```http://localhost:3000```.
 
-To make this production-ready with SSL:
+To make this production-ready with SSL (in theory):
 1. Add the ```.env``` and ```.env.local``` files to ```.dockerignore```
 2. Pass the environment variables in the two above files to the container in the command line
 3. Update the hostname and port in the code to use environment variables and also provide those through the command line
