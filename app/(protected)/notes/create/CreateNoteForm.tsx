@@ -55,7 +55,7 @@ export default function CreateNoteForm({ tags, traits }: { tags: Tag[], traits: 
       traits: selectableTraitList
     }
 
-    const res = await fetch('http://localhost:3000/api/notes/', {
+    const res = await fetch(`${location.origin}/api/notes/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(note)

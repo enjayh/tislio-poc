@@ -12,7 +12,7 @@ export default function DeleteNoteButton({ noteId }: { noteId: number }) {
   const handleDelete = async () => {
     setIsLoading(true)
 
-    const res = await fetch(`http://localhost:3000/api/notes/${noteId}`, {
+    const res = await fetch(`${location.origin}/api/notes/${noteId}`, {
       method: 'DELETE'
     })
 
