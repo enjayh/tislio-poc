@@ -46,14 +46,13 @@ export default function DashboardPane({ tagList, traitList, noteList }: { tagLis
       filteredNotes = filteredNotes.filter(
         note => note.traits.length > 0 && note.traits.filter(
           trait => traitFilters.filter(
-            f => (f.id === trait.trait.id)).length === traitFilters.length).length === traitFilters.length)
+            f => (f.id === trait.trait.id)).length > 0).length === traitFilters.length)
 
       // AND filter that checks trait value
       // filteredNotes = filteredNotes.filter(
       //   note => note.traits.length > 0 && note.traits.filter(
       //     trait => traitFilters.filter(
-      //       f => (f.id === trait.trait.id) && (f.value === trait.value)).length === traitFilters.length).length === traitFilters.length)
-
+      //       f => (f.id === trait.trait.id) && (f.value === trait.value)).length >= 0).length === traitFilters.length)
     }
 
     return filteredNotes
