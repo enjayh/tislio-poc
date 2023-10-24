@@ -12,15 +12,18 @@ export default function SignUp() {
   const [password, setPassword] = useState('')
   const [repassword, setRepassword] = useState('')
   const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError('')
+    setIsLoading(true)
 
     if (password !== repassword) {
       setError('Passwords do not match')
+      setIsLoading(false)
       return
     }
 
@@ -35,6 +38,7 @@ export default function SignUp() {
 
     if (error) {
       setError(error.message)
+      setIsLoading(false)
       return
     }
 
@@ -51,6 +55,8 @@ export default function SignUp() {
     if (res.ok) {
       router.push('/verify')
     } else {
+      setError('Invalid email and/or password')
+      setIsLoading(false)
       throw new Error('Error creating account')
     }
   }
@@ -82,7 +88,13 @@ export default function SignUp() {
             value={repassword}
             required
           />
-          <button className="btn-primary">Submit</button>
+          <button
+            className="btn-primary"
+            disabled={isLoading}
+          >
+            {!isLoading && "Submit"}
+            {isLoading && "Submitting..."}
+          </button>
         </form>
         <div className="text-center"><Link href="/login">Already have an account? <u>Log in here.</u></Link></div>
         {error && (

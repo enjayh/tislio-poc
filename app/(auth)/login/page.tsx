@@ -10,12 +10,14 @@ export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError('')
+    setIsLoading(true)
 
     const supabase = createClientComponentClient()
     const { error } = await supabase.auth.signInWithPassword({
@@ -24,6 +26,8 @@ export default function Login() {
     })
 
     if (error) {
+      setError('Incorrect email and/or password')
+      setIsLoading(false)
       throw new Error(error.message)
     }
 
@@ -51,7 +55,13 @@ export default function Login() {
             value={password}
             required
           />
-          <button className="btn-primary">Submit</button>
+          <button
+            className="btn-primary"
+            disabled={isLoading}
+          >
+            {!isLoading && "Submit"}
+            {isLoading && "Submitting..."}
+          </button>
         </form>
         <div className="text-center">
           <Link href="/signup">
