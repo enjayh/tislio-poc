@@ -92,8 +92,8 @@ export default function DashboardPane({ tagList, traitList, noteList }: { tagLis
               key={note.id}
               className="pill pill-note pill-inline"
             >
-              {note.completed && (<TiTick />)}
-              {formatNoteBodyForDisplay(note)}
+              {!note.completed && formatNoteBodyForDisplay(note)}
+              {note.completed && (<><TiTick /><s>{formatNoteBodyForDisplay(note)}</s></>)}
             </button>
             {note.tags.map(tag => (<button key={tag.id} className="pill-inline pill pill-tag">{tag.name}</button>))}
             {note.traits.map(traitWithValue => (
