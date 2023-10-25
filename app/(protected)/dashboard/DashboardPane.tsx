@@ -4,6 +4,7 @@ import { formatNoteBodyForDisplay, formatTraitValueForDisplay } from '@/app/util
 import { Note, Tag, Trait, TraitFilter } from '@/app/utils/types'
 import { useState } from 'react'
 import { TiTick } from 'react-icons/ti'
+import Switch from 'react-switch'
 
 export default function DashboardPane({ tagList, traitList, noteList }: { tagList: Tag[], traitList: Trait[], noteList: Note[] }) {
   const [tags] = useState(tagList)
@@ -11,6 +12,7 @@ export default function DashboardPane({ tagList, traitList, noteList }: { tagLis
   const [notes] = useState(noteList)
   const [tagFilters, setTagFilters] = useState<number[]>([])
   const [traitFilters, setTraitFilters] = useState<TraitFilter[]>([])
+  const [showCompleted, setShowCompleted] = useState(false)
 
   const handleTagClick = (id: number) => {
     if (tagFilters.includes(id)) {
@@ -60,6 +62,14 @@ export default function DashboardPane({ tagList, traitList, noteList }: { tagLis
 
   return (
     <>
+      <div className="text-right">
+        <span className="align-middle">Show Completed</span>
+        <Switch
+          onChange={() => setShowCompleted(!showCompleted)}
+          checked={showCompleted}
+          className="switch-completed"
+        />
+      </div>
       <div>
         <h2>Tags</h2>
         {tags.map(tag => (
@@ -87,24 +97,28 @@ export default function DashboardPane({ tagList, traitList, noteList }: { tagLis
       <div>
         <h2>Notes</h2>
         {filterNotes(notes, tagFilters, traitFilters).map(note => (
-          <div key={note.id}>
-            <button
-              key={note.id}
-              className="pill pill-note pill-inline"
-            >
-              {!note.completed && formatNoteBodyForDisplay(note)}
-              {note.completed && (<><TiTick /><s>{formatNoteBodyForDisplay(note)}</s></>)}
-            </button>
-            {note.tags.map(tag => (<button key={tag.id} className="pill-inline pill pill-tag">{tag.name}</button>))}
-            {note.traits.map(traitWithValue => (
-              <button
-                key={traitWithValue.trait_id}
-                className="pill-inline pill pill-trait"
-              >
-                {traitWithValue.trait.name + ': ' + formatTraitValueForDisplay(traitWithValue)}
-              </button>
-            ))}
-          </div>
+          <>
+            {(!note.completed || (showCompleted && note.completed)) && (
+              <div key={note.id}>
+                <button
+                  key={note.id}
+                  className="pill pill-note pill-inline"
+                >
+                  {note.completed && <TiTick />}
+                  {formatNoteBodyForDisplay(note)}
+                </button>
+                {note.tags.map(tag => (<button key={tag.id} className="pill-inline pill pill-tag">{tag.name}</button>))}
+                {note.traits.map(traitWithValue => (
+                  <button
+                    key={traitWithValue.trait_id}
+                    className="pill-inline pill pill-trait"
+                  >
+                    {traitWithValue.trait.name + ': ' + formatTraitValueForDisplay(traitWithValue)}
+                  </button>
+                ))}
+              </div>
+            )}
+          </>
         ))}
       </div>
     </>
