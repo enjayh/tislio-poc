@@ -1,6 +1,7 @@
-import { getAccountIdFromServerComponent } from '@/app/utils/supabase-utils';
-import { getTags } from '@/app/utils/prisma-utils';
-import { Tag } from '@/app/utils/types';
+import { getAccountIdFromServerComponent } from '@/app/utils/supabase-utils'
+import { getTags } from '@/app/utils/prisma-utils'
+import { Tag } from '@/app/utils/types'
+import { formatTextForDisplay } from '@/app/utils/general-utils'
 
 export const dynamic = 'force-dynamic'
 
@@ -13,7 +14,7 @@ export default async function TagList() {
       {tags.length === 0 && (<div>Add some tags to have them show up here.</div>)}
       {tags.map((tag: Tag) => (
         <button key={tag.id} className="pill pill-tag">
-          <p>{tag.name}</p>
+          <p>{formatTextForDisplay(tag.name)}</p>
         </button>
       ))}
     </>

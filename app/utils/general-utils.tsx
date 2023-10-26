@@ -45,16 +45,20 @@ export function getTypeIcon(type: string, classNames: string) {
   throw new Error(`Invalid trait type: ${type}`)
 }
 
-const maxCharactersDisplayed = 40
+const maxCharactersDisplayed = 35
 
-export function formatNoteBodyForDisplay(note: Note) {
+export function formatNoteForDisplay(note: Note) {
   const firstLine = note.body.split('\n')[0]
-  const slicedLine = firstLine.slice(0, maxCharactersDisplayed)
-  if (firstLine.length > maxCharactersDisplayed) {
-    return slicedLine + '...'
+
+  return formatTextForDisplay(firstLine)
+}
+
+export function formatTextForDisplay(text: string) {
+  if (text.length > maxCharactersDisplayed) {
+    return text.slice(0, maxCharactersDisplayed) + '...'
   }
 
-  return slicedLine
+  return text
 }
 
 export function formatTraitValueForDisplay(traitWithValue: TraitWithValue) {

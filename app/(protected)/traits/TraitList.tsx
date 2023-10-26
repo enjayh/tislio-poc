@@ -1,5 +1,5 @@
 import { getAccountIdFromServerComponent } from '@/app/utils/supabase-utils'
-import { getTypeIcon } from '@/app/utils/general-utils'
+import { formatTextForDisplay, getTypeIcon } from '@/app/utils/general-utils'
 import prisma from '@/app/utils/prisma-utils'
 import { Trait } from '@/app/utils/types'
 
@@ -20,7 +20,7 @@ export default async function TraitList() {
       {traits.map((trait: Trait) => (
         <button key={trait.id} className="pill pill-trait">
           {getTypeIcon(trait.type, 'icon-pill')}
-          <p>{trait.name}</p>
+          <p>{formatTextForDisplay(trait.name)}</p>
         </button>
       ))}
     </>
