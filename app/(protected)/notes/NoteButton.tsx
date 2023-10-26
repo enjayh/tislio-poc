@@ -1,6 +1,6 @@
 'use client'
 
-import { formatNoteBodyForDisplay } from '@/app/utils/general-utils'
+import { formatNoteForDisplay } from '@/app/utils/general-utils'
 import { Note } from '@/app/utils/types'
 import { useRouter } from 'next/navigation'
 import { TiTick } from 'react-icons/ti'
@@ -19,7 +19,7 @@ export default function NoteButton({ note }: { note: Note }) {
     >
       {note.completed && (<TiTick />)}
       <span>
-        {formatNoteBodyForDisplay(note)}
+        {formatNoteForDisplay(note)}
       </span>
     </button >
   )

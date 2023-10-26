@@ -1,6 +1,6 @@
 'use client'
 
-import { formatNoteBodyForDisplay, formatTraitValueForDisplay } from '@/app/utils/general-utils'
+import { formatNoteForDisplay, formatTextForDisplay, formatTraitValueForDisplay } from '@/app/utils/general-utils'
 import { Note, Tag, Trait, TraitFilter } from '@/app/utils/types'
 import { useState } from 'react'
 import { TiTick } from 'react-icons/ti'
@@ -105,15 +105,15 @@ export default function DashboardPane({ tagList, traitList, noteList }: { tagLis
                   className="pill pill-note pill-inline"
                 >
                   {note.completed && <TiTick />}
-                  {formatNoteBodyForDisplay(note)}
+                  {formatNoteForDisplay(note)}
                 </button>
-                {note.tags.map(tag => (<button key={tag.id} className="pill-inline pill pill-tag">{tag.name}</button>))}
+                {note.tags.map(tag => (<button key={tag.id} className="pill-inline pill pill-tag">{formatTextForDisplay(tag.name)}</button>))}
                 {note.traits.map(traitWithValue => (
                   <button
                     key={traitWithValue.trait_id}
                     className="pill-inline pill pill-trait"
                   >
-                    {traitWithValue.trait.name + ': ' + formatTraitValueForDisplay(traitWithValue)}
+                    {formatTextForDisplay(traitWithValue.trait.name) + ': ' + formatTextForDisplay(formatTraitValueForDisplay(traitWithValue))}
                   </button>
                 ))}
               </div>
