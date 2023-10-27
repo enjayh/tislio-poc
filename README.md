@@ -1,5 +1,8 @@
 # Tislio
 
+## This proof-of-concept had finished development and is archived. A retrospective can be found in [docs/retrospective.md](docs/retrospective.md).
+
+## Introduction
 Tislio is a web application for note-taking.
 - Notes can have 'Tags' assigned to them for categorization.
 - Notes can also have 'Traits' assigned to them for additional metadata.
